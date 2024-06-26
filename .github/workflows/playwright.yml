@@ -17,11 +17,11 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run your tests
-        run: npx playwright test
+      - name: Running Tests
+        run: npm run pw:api
         env:
           HOME: /root
-      - name:
+      - name: Archive
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
