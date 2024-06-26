@@ -33,7 +33,7 @@ test.describe('Test API Describe', async () => {
 				bodyfar: 'bodyboo',
 			},
 		});
-		expect(res.status()).toBe(200);
+		expect(res.status()).toBe(404);
 		const body = await res.json();
 		expect(body.data).toHaveProperty('bodyfoo', 'bodybar');
 		expect(body.data).toHaveProperty('bodyfar', 'bodyboo');
