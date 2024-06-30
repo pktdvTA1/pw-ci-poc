@@ -13,7 +13,7 @@ const jwt = new JWTManager({
 test.use({ baseURL: 'https://postman-echo.com' });
 test.describe.configure({ mode: 'parallel' });
 
-test.describe('Test API Describe', async () => {
+test.describe('Test API Describe', () => {
 	test.beforeAll(async ({ request }) => {
 		echo = new PostmanEchoManager(request);
 	});

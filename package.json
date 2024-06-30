@@ -16,8 +16,9 @@
 	},
 	"dependencies": {
 		"@types/jsonwebtoken": "^9.0.6",
+		"@typescript-eslint/eslint-plugin": "^7.14.1",
 		"dotenv": "^16.4.5",
-		"eslint": "^9.6.0",
+		"eslint": "^8.57.0",
 		"eslint-plugin-playwright": "^1.6.2",
 		"jsonwebtoken": "^9.0.2",
 		"jwt-decode": "^4.0.0",

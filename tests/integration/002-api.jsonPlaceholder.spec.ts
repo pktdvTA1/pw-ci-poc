@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test.use({ baseURL: 'https://jsonplaceholder.typicode.com/' });
 
-test.describe('Test API On jsonPlaceHolder', async () => {
-	test.describe('#GET Method', async () => {
+test.describe('Test API On jsonPlaceHolder', () => {
+	test.describe('#GET Method', () => {
 		test('Get All Posts should return multiple posts', async ({ request }) => {
 			const res = await request.get('/posts');
 			const body = await res.json();
 
 			expect(res).toBeOK();
-			expect(body.length).toBe(100);
+			expect(body).toHaveLength(100);
 			expect(body[0]).toStrictEqual({
 				userId: 1,
 				id: 1,
@@ -88,11 +88,11 @@ test.describe('Test API On jsonPlaceHolder', async () => {
 			const body = await res.json();
 
 			expect(res.status()).toBe(200);
-			expect(body.length).toBe(0);
+			expect(body).toHaveLength(0);
 		});
 	});
 
-	test.describe('#POST Method', async () => {
+	test.describe('#POST Method', () => {
 		test('Create New post should be successful', async ({ request }) => {
 			const res = await request.post('/posts', {
 				data: {
@@ -126,7 +126,7 @@ test.describe('Test API On jsonPlaceHolder', async () => {
 		});
 	});
 
-	test.describe('#PUT Method', async () => {
+	test.describe('#PUT Method', () => {
 		test('Update existing posts should be successful', async ({ request }) => {
 			const res = await request.put('/posts/1', {
 				data: {
