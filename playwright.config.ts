@@ -36,6 +36,8 @@ export default defineConfig({
 	use: {
 		baseURL: baseURL,
 		trace: 'on',
+		screenshot: 'off',
+		video: 'off',
 	},
 
 	/* Configure projects for major browsers */

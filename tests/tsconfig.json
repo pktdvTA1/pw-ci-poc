@@ -4,7 +4,8 @@
 			"~src/*": ["../src/*"],
 			"~databases/*": ["../databases/*"],
 			"~dist/*": ["../dist/*"],
-			"~poms/*": ["../poms/*"]
+			"~poms/*": ["./poms/*"],
+			"~helpers/*": ["./helpers/*"]
 		}
 	}
 }

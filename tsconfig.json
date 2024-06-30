@@ -4,7 +4,8 @@
 			"~src/*": ["./src/*"],
 			"~databases/*": ["./databases/*"],
 			"~dist/*": ["./dist/*"],
-			"~poms/*": ["./poms/*"]
+			"~poms/*": ["./tests/poms/*"],
+			"~helpers/*": ["./tests/helpers/*"]
 		},
 		/* Visit https://aka.ms/tsconfig to read more about this file */
 
