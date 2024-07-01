@@ -82,7 +82,7 @@ test.describe('Test API Describe', () => {
 	test('004 #POST with custom headers, auth, payload', async ({ request }) => {
 		// can also directly modify the echo.headers
 		const payload = { ...echo.payload, extraPayload: 'extraPayloadValue' };
-		echo.headers.Authorization = 'defeinitely not bearer';
+		echo.headers.Authorization = 'definitely not bearer';
 
 		const res = await request.post('/post', {
 			headers: echo.headers,
@@ -91,7 +91,7 @@ test.describe('Test API Describe', () => {
 		const body = await res.json();
 
 		expect(res.status()).toBe(200);
-		expect(body.headers.authorization).toBe('defeinitely not bearer');
+		expect(body.headers.authorization).toBe('definitely not bearer');
 		expect(body.data).toHaveProperty('bodyfoo', 'bodybar');
 		expect(body.data).toHaveProperty('bodyfar', 'bodyboo');
 		expect(body.data).toHaveProperty('extraPayload', 'extraPayloadValue');
