@@ -2,4 +2,8 @@
 
 - Fixture
 - Setup & Global setup
-- Stub
+- Setup simple API
+  -- Connect with actual db
+  --- Prisma
+  --- DockerFiles
+  -- Stub
