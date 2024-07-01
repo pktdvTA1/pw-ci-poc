@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ baseURL: 'https://jsonplaceholder.typicode.com/' });
+test.use({ baseURL: 'https://jsonplaceholder.typicode.com' });
 
 test.describe('Test API On jsonPlaceHolder', () => {
 	test.describe('#GET Method', () => {
