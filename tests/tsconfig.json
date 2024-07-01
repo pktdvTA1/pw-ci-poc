@@ -5,7 +5,8 @@
 			"~databases/*": ["../databases/*"],
 			"~dist/*": ["../dist/*"],
 			"~poms/*": ["./poms/*"],
-			"~helpers/*": ["./helpers/*"]
+			"~helpers/*": ["./helpers/*"],
+			"~setup/*": ["./setup/*"]
 		}
 	}
 }
