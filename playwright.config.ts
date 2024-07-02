@@ -44,6 +44,11 @@ export default defineConfig({
 	/* Configure projects for major browsers */
 	projects: [
 		{
+			name: 'setup_DB',
+			testDir: './tests/setup',
+			testMatch: '*.setup.ts',
+		},
+		{
 			name: 'e2eUI',
 			testDir: './tests/ui',
 			testMatch: '*.spec.ts',
@@ -53,6 +58,12 @@ export default defineConfig({
 			name: 'api',
 			testDir: './tests/integration',
 			testMatch: '*.spec.ts',
+		},
+		{
+			name: 'testDB',
+			testDir: './tests/integration',
+			testMatch: '*-db.spec.ts',
+			dependencies: ['setup_DB'],
 		},
 	],
 

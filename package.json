@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"pw:api": "playwright test --project=api",
+		"pw:tdb": "playwright test --project=testDB",
 		"pw:ui": "playwright test --project=e2eui",
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",

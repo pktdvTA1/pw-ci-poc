@@ -4,12 +4,19 @@
 $ npm i
 // for postgress with port 5432
 $ docker-compose up -d
+
 ```
 
 # Running
 
 ```
+// normal API req (postmanEcho, jsonplaceholder)
 $ npm run pw:api
+
+// with DB using Prisma which require the actual db(postgres) atleast in docker
+// this will execute the truncate and insert at setup level
+$ npm run pw:tdb
+
 
 ```
 
