@@ -2,19 +2,28 @@ import playwright from 'eslint-plugin-playwright';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
-	eslint.configs.recommended,
-	...tseslint.configs.recommended,
+export default [
+	...[eslint.configs.recommended, ...tseslint.configs.recommended].map((c) => ({
+		...c,
+		files: ['**/*.ts'],
+	})),
 	{
-		...playwright.configs['flat/recommended'],
+		// override recommended eslint and tseslint here
+		files: ['**/*.ts'],
 		rules: {
-			indent: [
-				'error',
-				'tab',
-				{
-					ignoredNodes: ['PropertyDefinition'],
-				},
-			],
+			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/no-namespace': 'off',
+		},
+	},
+	{
+		files: ['tests/**/*.spec.ts'],
+		...playwright.configs['flat/recommended'],
+	},
+	{
+		// override playwright eslint () here
+		// can refer to this https://www.npmjs.com/package/eslint-plugin-playwright
+		files: ['tests/**/*.spec.ts', 'tests/**/*.setup.ts', 'tests/**/*.page.ts'],
+		rules: {
 			'@typescript-eslint/no-namespace': 'off',
 			'no-inner-declarations': 'off',
 			'no-unused-vars': 'off',
@@ -28,5 +37,5 @@ export default tseslint.config(
 			'playwright/missing-playwright-await': 'off',
 			'playwright/no-skipped-test': 'warn',
 		},
-	}
-);
+	},
+];

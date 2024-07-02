@@ -5,7 +5,7 @@
 	"scripts": {
 		"pw:api": "playwright test --project=api",
 		"pw:ui": "playwright test --project=e2eui",
-		"pw:eslint": "eslint --fix tests/**/*.spec.*"
+		"eslint:fix": "eslint --fix tests/"
 	},
 	"keywords": [],
 	"author": "",

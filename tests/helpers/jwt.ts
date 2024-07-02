@@ -5,7 +5,7 @@ export interface UserInfo {
 	firstName: string;
 	lastName: string;
 	email: string;
-	isActive: Boolean;
+	isActive: boolean;
 }
 
 export namespace JWTService {
