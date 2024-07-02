@@ -5,7 +5,8 @@
 			"~databases/*": ["./databases/*"],
 			"~dist/*": ["./dist/*"],
 			"~poms/*": ["./tests/poms/*"],
-			"~helpers/*": ["./tests/helpers/*"]
+			"~helpers/*": ["./tests/helpers/*"],
+			"~fixtures/*": ["./tests/fixtures/*"]
 		},
 		/* Visit https://aka.ms/tsconfig to read more about this file */
 
