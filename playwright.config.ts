@@ -58,6 +58,7 @@ export default defineConfig({
 			name: 'api',
 			testDir: './tests/integration',
 			testMatch: '*.spec.ts',
+			testIgnore: '*db*',
 		},
 		{
 			name: 'testDB',

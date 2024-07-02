@@ -41,5 +41,36 @@ export namespace PrismaService {
 				throw new Error(`Unable to truncate tables due to > ${e}`);
 			}
 		}
+
+		async queryAll<T extends PrismaModelNames>(table: T) {
+			const model = this.prisma[table] as any;
+			if (!model) {
+				throw new Error(`Medle ${table} not found`);
+			}
+			try {
+				return model.findMany();
+			} catch (e) {
+				throw new Error(`Unable to findAll (queryAll) due to > ${e}`);
+			}
+		}
+
+		async queryById<T extends PrismaModelNames>(table: T, id: number) {
+			const model = this.prisma[table] as any;
+			if (!model) {
+				throw new Error(`Medle ${table} not found`);
+			}
+			try {
+				// yes it's findMany not findUnique or findOne
+				// and yes we're query for id
+				// if it's many then we've got some real problem here
+				return model.findMany({
+					where: {
+						id: id,
+					},
+				});
+			} catch (e) {
+				throw new Error(`Unable to findAll (queryAll) due to > ${e}`);
+			}
+		}
 	}
 }
