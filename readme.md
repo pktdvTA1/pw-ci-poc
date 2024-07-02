@@ -1,7 +1,7 @@
 # installation
 
 ```
-$ npm install
+$ npm i
 ```
 
 # Running
@@ -15,11 +15,12 @@ $ npm run pw:api
 
 ```
 
-$ npm run pw:eslint
+$ npm run eslint:fix
 ```
 
 # Todo
 
+- ~~Eslint~~
 - Fixture
 - Setup & Global setup
 - Setup simple API
@@ -27,7 +28,8 @@ $ npm run pw:eslint
   - Connect with actual db
 
     - Prisma
-
-    * DockerFiles
+      - DockerFiles
+      - Migration
 
   - Stub
+  - nock
