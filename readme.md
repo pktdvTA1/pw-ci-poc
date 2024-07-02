@@ -2,6 +2,8 @@
 
 ```
 $ npm i
+// for postgress with port 5432
+$ docker-compose up -d
 ```
 
 # Running
@@ -18,18 +20,32 @@ $ npm run pw:api
 $ npm run eslint:fix
 ```
 
+# Prisma `./databases/prisma`
+
+- When the schema (schema.prisma) is updated (migration)
+
+```
+$ npm run prisma:migration
+```
+
+- Also generate types
+
+```
+$ npm run prisma:gen
+```
+
 # Todo
 
 - ~~Eslint~~
-- Fixture
+- ~~Fixture~~
 - Setup & Global setup
 - Setup simple API
 
   - Connect with actual db
 
     - Prisma
-      - DockerFiles
-      - Migration
+      - ~~docker-compose.yaml~~
+      - ~~Migration~~
 
   - Stub
   - nock

@@ -5,7 +5,9 @@
 	"scripts": {
 		"pw:api": "playwright test --project=api",
 		"pw:ui": "playwright test --project=e2eui",
-		"eslint:fix": "eslint --fix tests/"
+		"eslint:fix": "eslint --fix tests/",
+		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
+		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma"
 	},
 	"keywords": [],
 	"author": "",
@@ -21,11 +23,13 @@
 		"typescript-eslint": "^7.14.1"
 	},
 	"dependencies": {
+		"@prisma/client": "^5.16.1",
 		"@types/jsonwebtoken": "^9.0.6",
 		"dotenv": "^16.4.5",
 		"eslint-plugin-playwright": "^1.6.2",
 		"jsonwebtoken": "^9.0.2",
-		"jwt-decode": "^4.0.0"
+		"jwt-decode": "^4.0.0",
+		"prisma": "^5.16.1"
 	},
 	"directories": {
 		"test": "tests"

@@ -6,3 +6,7 @@ node_modules/
 /report
 
 .DS_Store
+
+/databases/prisma/migrations/*
+
+.env
