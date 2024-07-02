@@ -24,7 +24,7 @@ test.describe('Postman Echo API with Fixture', () => {
 		expect(decoded).toHaveProperty('lastName', 'fixtureLastName');
 		expect(decoded).toHaveProperty(
 			'email',
-			'firstName.lastName.fixure@email.com'
+			'firstName.lastName.fixture@email.com'
 		);
 		expect(decoded).toHaveProperty('isActive', true);
 		expect(decoded).toHaveProperty('iat');

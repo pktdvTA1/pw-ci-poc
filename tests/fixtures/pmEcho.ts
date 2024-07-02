@@ -12,7 +12,7 @@ export const test = base.extend<PMFixture>({
 		const jwt = new JWTManager({
 			firstName: 'fixtureFirstName',
 			lastName: 'fixtureLastName',
-			email: 'firstName.lastName.fixure@email.com',
+			email: 'firstName.lastName.fixture@email.com',
 			isActive: true,
 		});
 		const pm = new PostmanEchoManager(request);
