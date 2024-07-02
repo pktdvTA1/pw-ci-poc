@@ -1,31 +1,32 @@
 {
-	"name": "pw-ci",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"pw:api": "playwright test --project=api",
-		"pw:ui": "playwright test --project=e2eui",
-		"pw:eslint": "eslint --fix tests/**/*.spec.*"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@playwright/test": "^1.45.0",
-		"@types/node": "^20.14.9"
-	},
-	"dependencies": {
-		"@types/jsonwebtoken": "^9.0.6",
-		"@typescript-eslint/eslint-plugin": "^7.14.1",
-		"dotenv": "^16.4.5",
-		"eslint": "^8.57.0",
-		"eslint-plugin-playwright": "^1.6.2",
-		"jsonwebtoken": "^9.0.2",
-		"jwt-decode": "^4.0.0",
-		"typescript": "^5.5.2"
-	},
-	"directories": {
-		"test": "tests"
-	},
-	"description": ""
+  "name": "pw-ci",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pw:api": "playwright test --project=api",
+    "pw:ui": "playwright test --project=e2eui",
+    "pw:eslint": "eslint --fix tests/**/*.spec.*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.9"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "eslint-plugin-playwright": "^1.6.2",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "playwright": "^1.45.0",
+    "typescript": "^5.5.2"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
 }
