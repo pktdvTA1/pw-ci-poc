@@ -1,6 +1,5 @@
-import { sign } from 'jsonwebtoken';
 import { jwtDecode } from 'jwt-decode';
-
+import jwt from 'jsonwebtoken';
 export interface UserInfo {
 	firstName: string;
 	lastName: string;
@@ -10,6 +9,7 @@ export interface UserInfo {
 
 export namespace JWTService {
 	const secret = 'secretkodkod';
+	const { sign } = jwt;
 	export const encode = (obj: UserInfo) => {
 		return sign(obj, secret, { expiresIn: 300 });
 	};
