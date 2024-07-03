@@ -11,6 +11,7 @@ export default [
 			'@typescript-eslint/no-namespace': 'off',
 			'@typescript-eslint/no-unused-vars': 'error',
 			'@typescript-eslint/no-inner-declarations': 'off',
+			'require-await': 'warn',
 		},
 	})),
 	{
@@ -22,7 +23,7 @@ export default [
 			'playwright/prefer-to-be': 'warn',
 			'playwright/prefer-to-contain': 'error',
 			'playwright/prefer-to-have-length': 'error',
-			'playwright/missing-playwright-await': 'off',
+			'playwright/missing-playwright-await': 'warn',
 			'playwright/no-skipped-test': 'warn',
 		},
 	},

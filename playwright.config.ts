@@ -50,7 +50,7 @@ export default defineConfig({
 		},
 		{
 			name: 'e2eUI',
-			testDir: './tests/ui',
+			testDir: './tests/e2e',
 			testMatch: '*.spec.ts',
 			use: { ...devices['Desktop Chrome'] },
 		},
