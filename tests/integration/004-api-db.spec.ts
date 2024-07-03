@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { PrismaService } from '~databases/prisma/dbService';
-
+/**
+ * This suite demostrate proof of concept of a way to
+ * Interact with DB (truncate, seeding or querying)
+ * And also using the Setup for Global Test Setup (for truncate)
+ * The truncate and seeding necessary data
+ */
 const prisma = new PrismaService.PrismaManager();
 
 test.describe('Prisma DB and Setup', () => {
