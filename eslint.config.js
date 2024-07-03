@@ -1,8 +1,8 @@
-import playwright from 'eslint-plugin-playwright';
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+const playwright = require('eslint-plugin-playwright');
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
 
-export default [
+module.exports = [
 	...[eslint.configs.recommended, ...tseslint.configs.recommended].map((c) => ({
 		...c,
 		files: ['**/*.ts'],
