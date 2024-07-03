@@ -21,7 +21,7 @@ export namespace todoMVCServie {
 			await this.page.keyboard.press('Enter');
 		}
 		async getAllAddedNotes() {
-			return this.addedNotes.allInnerTexts();
+			return await this.addedNotes.allInnerTexts();
 		}
 	}
 

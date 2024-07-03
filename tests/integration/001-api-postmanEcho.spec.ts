@@ -24,10 +24,10 @@ test.use({ baseURL: 'https://postman-echo.com' });
 test.describe.configure({ mode: 'parallel' });
 
 test.describe('Test API Describe', () => {
-	test.beforeAll(async ({ request }) => {
+	test.beforeAll(({ request }) => {
 		echo = new PostmanEchoManager(request);
 	});
-	test.beforeEach(async () => {
+	test.beforeEach(() => {
 		echo.headers = { ...echo.headers, Authorization: `Bearer ${jwt.token}` };
 	});
 

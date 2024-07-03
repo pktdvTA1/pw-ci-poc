@@ -8,7 +8,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			const res = await request.get('/posts');
 			const body = await res.json();
 
-			expect(res).toBeOK();
+			await expect(res).toBeOK();
 			expect(body).toHaveLength(100);
 			expect(body[0]).toStrictEqual({
 				userId: 1,
@@ -31,7 +31,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			const res = await request.get('/posts/10');
 			const body = await res.json();
 
-			expect(res).toBeOK();
+			await expect(res).toBeOK();
 			expect(body).toStrictEqual({
 				userId: 1,
 				id: 10,
@@ -103,7 +103,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			});
 			const body = await res.json();
 
-			expect(res).toBeOK();
+			await expect(res).toBeOK();
 			expect(body).toStrictEqual({
 				title: 'foo',
 				body: 'bar',
@@ -119,7 +119,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			});
 			const body = await res.json();
 
-			expect(res).toBeOK();
+			await expect(res).toBeOK();
 			expect(body).toStrictEqual({
 				id: 101,
 			});
@@ -136,7 +136,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			});
 			const body = await res.json();
 
-			expect(res).toBeOK();
+			await expect(res).toBeOK();
 			expect(body).toStrictEqual({
 				title: 'editingTitle',
 				body: 'editingBody',

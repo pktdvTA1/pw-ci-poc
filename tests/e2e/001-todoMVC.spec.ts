@@ -34,6 +34,7 @@ test.describe('Verify UI of homepage.', () => {
 });
 
 test.describe('Verify Adding Function.', () => {
+	test.beforeAll(async () => {});
 	test.beforeEach(async ({ page }) => {
 		td = new todoMVCServie.TodoMVCManager(page);
 		tda = new todoMVCServie.TodoMVCAssertion(page);
