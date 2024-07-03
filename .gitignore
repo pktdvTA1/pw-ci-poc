@@ -4,3 +4,9 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /report
+
+.DS_Store
+
+/databases/prisma/migrations/*
+
+.env

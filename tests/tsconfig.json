@@ -6,7 +6,8 @@
 			"~dist/*": ["../dist/*"],
 			"~poms/*": ["./poms/*"],
 			"~helpers/*": ["./helpers/*"],
-			"~setup/*": ["./setup/*"]
+			"~setup/*": ["./setup/*"],
+			"~fixtures/*": ["./fixtures/*"]
 		}
 	}
 }

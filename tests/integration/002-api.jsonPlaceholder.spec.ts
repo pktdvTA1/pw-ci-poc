@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ baseURL: 'https://jsonplaceholder.typicode.com/' });
+test.use({ baseURL: 'https://jsonplaceholder.typicode.com' });
 
 test.describe('Test API On jsonPlaceHolder', () => {
 	test.describe('#GET Method', () => {
@@ -28,7 +28,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 		test('Get existing Posts should return posts details', async ({
 			request,
 		}) => {
-			const res = await request.get('posts/10');
+			const res = await request.get('/posts/10');
 			const body = await res.json();
 
 			expect(res).toBeOK();
@@ -41,7 +41,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 		});
 
 		test('Get not existing Post should return error', async ({ request }) => {
-			const res = await request.get('posts/101');
+			const res = await request.get('/posts/101');
 			const body = await res.json();
 
 			expect(res.status()).toBe(404);
@@ -51,17 +51,17 @@ test.describe('Test API On jsonPlaceHolder', () => {
 		test('Get posts with alphabet should return errors', async ({
 			request,
 		}) => {
-			const res = await request.get('posts/a');
+			const res = await request.get('/posts/a');
 			const body = await res.json();
 
 			expect(res.status()).toBe(404);
 			expect(body).toStrictEqual({});
 		});
 
-		test('Get Post comments should list list of available comments under given post id.', async ({
+		test('Get Post comments should list of available comments under given post id.', async ({
 			request,
 		}) => {
-			const res = await request.get('posts/12/comments');
+			const res = await request.get('/posts/12/comments');
 			const body = await res.json();
 
 			expect(res.status()).toBe(200);
@@ -144,7 +144,7 @@ test.describe('Test API On jsonPlaceHolder', () => {
 			});
 		});
 
-		test('Editing none exist posts should be failure', async ({ request }) => {
+		test('Editing non-exist posts should be failure', async ({ request }) => {
 			const res = await request.post('/posts/999', {
 				data: {
 					title: 'editingTitle',

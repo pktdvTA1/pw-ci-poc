@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PRISMA_DATABASE_URL")
+}
+model users {
+  id           Int      @id @default(autoincrement())
+  external_id   String
+  first_name   String
+  last_name    String
+  email        String
+  phone_number String?
+  is_active    Boolean?  @default(true)
+  is_deleted   Boolean?  @default(false)
+  created_at   DateTime @default(now())
+  created_by   String?
+  updated_at   DateTime @default(now())
+  updated_by   String?
+  role_id      Int
+  roleId       roles    @relation(fields: [role_id], references: [id])
+}
+
+model roles {
+  id               Int                @id @default(autoincrement())
+  name             String
+  display_name     String
+  is_active        Boolean            @default(true)
+  is_deleted       Boolean            @default(false)
+  created_at       DateTime           @default(now())
+  created_by       String?
+  updated_at       DateTime           @default(now())
+  updated_by       String?
+  role_permissions role_permissions[]
+  users            users[]
+}
+
+model permissions {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  is_active        Boolean            @default(true)
+  is_deleted       Boolean            @default(false)
+  created_at       DateTime           @default(now())
+  created_by       String?
+  updated_at       DateTime           @default(now())
+  updated_by       String?
+  role_permissions role_permissions[]
+}
+
+model role_permissions {
+  role_id       Int
+  permission_id Int
+  is_active     Boolean?    @default(true)
+  roleId        roles       @relation(fields: [role_id], references: [id])
+  permissionId  permissions @relation(fields: [permission_id], references: [id])
+
+  @@unique([role_id, permission_id])
+}
