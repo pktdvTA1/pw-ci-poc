@@ -19,4 +19,9 @@ export const test = base.extend<PMFixture>({
 		Object.assign(pm.headers, { Authorization: `Bearer ${jwt.token}` });
 		await use(pm);
 	},
+	withInvalidAuth: async ({ request }, use) => {
+		const pm = new PostmanEchoManager(request);
+		Object.assign(pm.headers, { Authorization: 'Bearer something.not.right' });
+		await use(pm);
+	},
 });

@@ -1,6 +1,16 @@
 import { test, expect } from '@playwright/test';
 import { PostmanEchoManager } from '~poms/echo';
 import { JWTManager } from '~poms/auth';
+/**
+ * This suite uses the POMs style and simple JWT auth mockup (none-functional)
+ * The POMs are responsible for mostly template for this
+ * but It should also responsible to function that's for testing this suite
+ * or module as well, However this test site has no need for it.
+ * This simulate the needed of Auth in headers
+ * There's no real different between Construct the JWTmanager() outside of describe's BeforeAll
+ * Or in the beforeAll itself, because we use parallel mode,
+ * So this file will run as much as spawned workers anyway
+ */
 
 let echo: PostmanEchoManager;
 const jwt = new JWTManager({

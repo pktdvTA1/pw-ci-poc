@@ -33,4 +33,10 @@ export class PostmanEchoManager {
 			bodyfar: 'bodyboo',
 		};
 	}
+	getHeaderTokenBearer(headers: Headers) {
+		if (headers.hasOwnProperty('Authorization')) {
+			throw new Error('There is no authorization in header');
+		}
+		return headers.authorization.split(' ')[1];
+	}
 }

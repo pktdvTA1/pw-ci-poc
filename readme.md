@@ -41,6 +41,8 @@ $ npm run prisma:migration
 $ npm run prisma:gen
 ```
 
+- Lastely if ModelName or new Model is added, Be sure to add key-pair value for (Prisma.ModelName: <Model>CreateManyInput), this is for Insert function type safefy.
+
 # Todo
 
 - ~~Eslint~~
@@ -50,7 +52,7 @@ $ npm run prisma:gen
 
   - Connect with actual db
 
-    - Prisma
+    - ~~Prisma~~
       - ~~docker-compose.yaml~~
       - ~~Migration~~
 
