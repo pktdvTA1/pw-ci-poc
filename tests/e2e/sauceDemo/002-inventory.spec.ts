@@ -11,7 +11,7 @@ test.describe('test auth', async () => {
 	test.afterEach(async () => {
 		await inv.close();
 	});
-	test('bypass login', async () => {
+	test('When enter page directly with auth Should display the Products page', async () => {
 		await inv.toBeOnInventoryPage();
 	});
 });
