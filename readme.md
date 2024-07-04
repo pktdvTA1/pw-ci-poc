@@ -72,5 +72,8 @@ $ npm run prisma:gen
   - nock
 
 - UI
+
   - ~~Basic end to end with POMS~~
   - ~~Basic end to end with auth~~
+
+- Husky

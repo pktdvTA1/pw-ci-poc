@@ -3,7 +3,7 @@ import { InventoryService } from '~poms/inventory.page';
 
 let inv: InventoryService.InventoryAssertion;
 
-test.describe('test auth', async () => {
+test.describe('test auth', () => {
 	test.beforeEach(async ({ page }) => {
 		inv = new InventoryService.InventoryAssertion(page);
 		await inv.goto();
