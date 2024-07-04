@@ -76,6 +76,7 @@ export default defineConfig({
 			testDir: './tests/e2e/sauceDemo[no-login]',
 			testMatch: '*.spec.ts',
 			dependencies: ['setup_Login'],
+			use: { ...devices['Desktop Chrome'] },
 		},
 	],
 

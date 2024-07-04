@@ -22,43 +22,43 @@ test.describe('Basic Login',() => {
 		await loginPageAssertions.toBeOnInventoryPage()
 	})
 
-	test('Login with locked_out_user' ,async () => {
+	test('Login with locked_out_user should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('locked_out_user','secret_sauce')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Sorry, this user has been locked out.')
 	})
 
-	test('Login with blank username and password' ,async () => {
+	test('Login with blank username and password should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('','')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Username is required')
 	})
 	
-	test('Login with blank username' ,async () => {
+	test('Login with blank username should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('','secret_sauce')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Username is required')
 	})
 
-	test('Login with blank password' ,async () => {
+	test('Login with blank password should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('standard_user','')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Password is required')
 	})
 
-	test('Login with wrong username and password' ,async () => {
+	test('Login with wrong username and password should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('test01','password')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Username and password do not match any user in this service')
 	})
 
-	test('Login with wrong username' ,async () => {
+	test('Login with wrong username should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('test01','secret_sauce')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Username and password do not match any user in this service')
 	})
 
-	test('Login with wrong password' ,async () => {
+	test('Login with wrong password should fail' ,async () => {
 		await loginPage.fillUsernameAndPassword('standard_user','password')
 		await loginPage.loginButton.click()
 		await expect(loginPageAssertions.errorMessage).toContainText('Username and password do not match any user in this service')
