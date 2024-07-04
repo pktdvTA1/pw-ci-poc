@@ -67,16 +67,19 @@ export default defineConfig({
 			dependencies: ['setup_DB'],
 		},
 		{
-			name: 'setup_Login',
+			name: 'setup_sauceDemo',
 			testDir: './tests/setup',
 			testMatch: 'login.setup.ts',
 		},
 		{
-			name: 'testLogin',
-			testDir: './tests/e2e/sauceDemo[no-login]',
+			name: 'sauceDemo',
+			testDir: './tests/e2e/sauceDemo',
 			testMatch: '*.spec.ts',
-			dependencies: ['setup_Login'],
-			use: { ...devices['Desktop Chrome'] },
+			dependencies: ['setup_sauceDemo'],
+			use: {
+				...devices['Desktop Chrome'],
+				storageState: 'tests/.auth/loginSetup.json',
+			},
 		},
 	],
 
