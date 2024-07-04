@@ -7,6 +7,7 @@
 		"pw:tdb": "playwright test --project=testDB",
 		"pw:e2e": "playwright test --project=e2eui",
 		"pw:ui": "playwright test --ui",
+		"pw:sd": "playwright test --project=sauceDemo",
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
 		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma"

@@ -9,6 +9,8 @@ $ docker-compose up -d
 
 # Running
 
+## API
+
 ```
 // normal API req (postmanEcho, jsonplaceholder)
 $ npm run pw:api
@@ -16,7 +18,17 @@ $ npm run pw:api
 // with DB using Prisma which require the actual db(postgres) atleast in docker
 // this will execute the truncate and insert at setup level
 $ npm run pw:tdb
+```
 
+## UI ([basic](https://todomvc.com/examples/react/dist/), [login](https://www.saucedemo.com/))
+
+// The Login with POMs + Setup and StorageState
+// The basic Login has has cookie and origins set as empty to avoid auth
+// The inventory despite only single test(fornow) is to demonstrate
+// An directly access page via URL
+$ npm run pw:sd
+
+```
 
 ```
 
@@ -58,3 +70,7 @@ $ npm run prisma:gen
 
   - Stub
   - nock
+
+- UI
+  - ~~Basic end to end with POMS~~
+  - ~~Basic end to end with auth~~
