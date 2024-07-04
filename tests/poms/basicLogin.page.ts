@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
-export namespace loginService {
+export namespace LoginService {
 	export class LoginPage {
 		readonly baseUrl: string = 'https://www.saucedemo.com/';
 		page: Page;

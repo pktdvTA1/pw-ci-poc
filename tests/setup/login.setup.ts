@@ -1,15 +1,15 @@
 import { test as setup } from '@playwright/test';
-import { loginService } from '~poms/basicLogin.page';
+import { LoginService } from '~poms/basicLogin.page';
 import { InventoryService } from '~poms/inventory.page';
 
-let loginPage: loginService.LoginPage;
+let loginPage: LoginService.LoginPage;
 let inventoryAssertion: InventoryService.InventoryAssertion;
 
 setup.describe.configure({ mode: 'parallel' });
 
 setup.describe('login setup tests', () => {
 	setup.beforeEach(async ({ page }) => {
-		loginPage = new loginService.LoginPage(page);
+		loginPage = new LoginService.LoginPage(page);
 		inventoryAssertion = new InventoryService.InventoryAssertion(page);
 		await loginPage.goto();
 	});
