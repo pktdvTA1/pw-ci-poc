@@ -9,11 +9,11 @@ let inventoryAssertion: InventoryService.InventoryAssertion;
 test.use({ storageState: { cookies: [], origins: [] } });
 test.describe.configure({ mode: 'parallel' });
 
-test.describe('Basic Login', () => {
-	test.beforeEach(async ({ page }) => {
+test.describe('Basic Login tests', () => {
+	test.beforeEach(async ({ page, request }) => {
 		loginPage = new loginService.LoginPage(page);
 		loginPageAssertions = new loginService.LoginPageAssertions(page);
-		inventoryAssertion = new InventoryService.InventoryAssertion(page);
+		inventoryAssertion = new InventoryService.InventoryAssertion(page, request);
 
 		await loginPage.goto();
 	});
