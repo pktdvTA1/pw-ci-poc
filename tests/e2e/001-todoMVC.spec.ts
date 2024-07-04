@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { todoMVCServie } from '~poms/todoMVC.page';
+import { TodoMVCServie } from '~poms/todoMVC.page';
 
-let td: todoMVCServie.TodoMVCManager;
-let tda: todoMVCServie.TodoMVCAssertion;
+let td: TodoMVCServie.TodoMVCManager;
+let tda: TodoMVCServie.TodoMVCAssertion;
 
 test.describe.configure({ mode: 'parallel' });
 
 test.describe('Verify UI of homepage.', () => {
 	test.beforeEach(async ({ page }) => {
-		td = new todoMVCServie.TodoMVCManager(page);
+		td = new TodoMVCServie.TodoMVCManager(page);
 		await td.goto();
 	});
 	test.afterEach(async () => {
@@ -34,10 +34,9 @@ test.describe('Verify UI of homepage.', () => {
 });
 
 test.describe('Verify Adding Function.', () => {
-	test.beforeAll(async () => {});
 	test.beforeEach(async ({ page }) => {
-		td = new todoMVCServie.TodoMVCManager(page);
-		tda = new todoMVCServie.TodoMVCAssertion(page);
+		td = new TodoMVCServie.TodoMVCManager(page);
+		tda = new TodoMVCServie.TodoMVCAssertion(page);
 		await td.goto();
 	});
 
@@ -45,13 +44,52 @@ test.describe('Verify Adding Function.', () => {
 		await td.page.close();
 	});
 
-	test('Input Note character should have new note added.', async () => {
+	test('Input Note character should have new note added with valid filter options and hidden remove button', async () => {
 		await td.inputNote('New Note');
-		await td.page.screenshot({ path: 'ss.png' });
 		await tda.verifyAddedNote(['New Note']);
+		await tda.verifyAddedNoteOptionsWithTotalAvailableNumber(1);
+		// because no note has been marked as completed yet
+		// so by default it should be disabled
+		await expect(td.noteItemToggle.nth(0)).not.toBeChecked();
+		await expect(td.filterClearComplete).toBeDisabled();
+		await expect(td.deleteNoteButton.nth(0)).not.toBeVisible();
 	});
+
 	test('Input 1 single character should not be allowed to add', async () => {
 		await td.inputNote('x');
-		await expect(td.addedNotes).not.toBeVisible();
+		await expect(td.addedNoteLabel).not.toBeVisible();
+	});
+
+	test('Delete 1 of added note should remove only 1 note.', async () => {
+		await td.inputNote('Note 1');
+		await td.inputNote('Note 2');
+		await td.inputNote('Note 3');
+
+		await td.removeNote(1);
+		await tda.verifyAddedNote(['Note 1', 'Note 3']);
+		await tda.verifyAddedNoteOptionsWithTotalAvailableNumber(2);
+		await expect(td.filterClearComplete).toBeDisabled();
+	});
+
+	test('Remove All note should also make Options disappear.', async () => {
+		await td.inputNote('Note 1');
+		await td.removeNote(0);
+
+		await expect(td.addedNoteLabel).toHaveCount(0);
+		await expect(td.addedNoteOptions).not.toBeVisible();
+		await expect(td.filterAllNote).not.toBeVisible();
+		await expect(td.filterActiveNote).not.toBeVisible();
+		await expect(td.filterCompleteNote).not.toBeVisible();
+		await expect(td.filterClearComplete).not.toBeVisible();
+	});
+
+	test('Tick the Added Note should update the List of item left', async () => {
+		await td.inputNote('Note 1');
+		await td.inputNote('Note 2');
+
+		await td.toggleTheCheckBox(1);
+		await tda.verifyAddedNoteIsChecked(0, false);
+		await tda.verifyAddedNoteIsChecked(1, true);
+		await tda.verifyAddedNoteOptionsWithTotalAvailableNumber(1);
 	});
 });
