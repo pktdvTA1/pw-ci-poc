@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
  * will result with an error from eslint.config.js file.
  * And since we may not use this JWT in actual practice. just leave it be
  */
-import jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 export interface UserInfo {
 	firstName: string;
 	lastName: string;
@@ -15,7 +15,6 @@ export interface UserInfo {
 
 export namespace JWTService {
 	const secret = 'secretkodkod';
-	const { sign } = jwt;
 	export const encode = (obj: UserInfo) => {
 		return sign(obj, secret, { expiresIn: 300 });
 	};
