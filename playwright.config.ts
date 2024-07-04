@@ -66,6 +66,21 @@ export default defineConfig({
 			testMatch: '*-db.spec.ts',
 			dependencies: ['setup_DB'],
 		},
+		{
+			name: 'setup_sauceDemo',
+			testDir: './tests/setup',
+			testMatch: 'login.setup.ts',
+		},
+		{
+			name: 'sauceDemo',
+			testDir: './tests/e2e/sauceDemo',
+			testMatch: '*.spec.ts',
+			dependencies: ['setup_sauceDemo'],
+			use: {
+				...devices['Desktop Chrome'],
+				storageState: 'tests/.auth/loginSetup.json',
+			},
+		},
 	],
 
 	/* Run your local dev server before starting the tests */
