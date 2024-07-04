@@ -5,8 +5,8 @@
 	"scripts": {
 		"pw:api": "playwright test --project=api",
 		"pw:tdb": "playwright test --project=testDB",
-		"pw:e2e": "playwright test --project=e2eui",
 		"pw:ui": "playwright test --ui",
+		"pw:td": "playwright test --project=td",
 		"pw:sd": "playwright test --project=sauceDemo",
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",

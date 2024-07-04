@@ -49,12 +49,6 @@ export default defineConfig({
 			testMatch: '*.setup.ts',
 		},
 		{
-			name: 'e2eUI',
-			testDir: './tests/e2e',
-			testMatch: '*.spec.ts',
-			use: { ...devices['Desktop Chrome'] },
-		},
-		{
 			name: 'api',
 			testDir: './tests/integration',
 			testMatch: '*.spec.ts',
@@ -79,6 +73,14 @@ export default defineConfig({
 			use: {
 				...devices['Desktop Chrome'],
 				storageState: 'tests/.auth/loginSetup.json',
+			},
+		},
+		{
+			name: 'td',
+			testDir: './tests/e2e/todoMVC',
+			testMatch: '*spec.ts',
+			use: {
+				...devices['Desktop Chrome'],
 			},
 		},
 	],
