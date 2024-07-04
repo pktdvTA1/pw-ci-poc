@@ -22,13 +22,15 @@ $ npm run pw:tdb
 
 ## UI ([basic](https://todomvc.com/examples/react/dist/), [login](https://www.saucedemo.com/))
 
-// The Login with POMs + Setup and StorageState
-// The basic Login has has cookie and origins set as empty to avoid auth
-// The inventory despite only single test(fornow) is to demonstrate
-// An directly access page via URL
-$ npm run pw:sd
+The Login with POMs + Setup and StorageState.
+
+The basic Login has has cookie and origins set as empty to avoid auth,
+
+The inventory despite only single test(fornow) is to demonstrate.
+An directly access page via URL.
 
 ```
+$ npm run pw:sd
 
 ```
 
@@ -37,6 +39,7 @@ $ npm run pw:sd
 ```
 
 $ npm run eslint:fix
+
 ```
 
 # Prisma `./databases/prisma`
@@ -44,13 +47,17 @@ $ npm run eslint:fix
 - When the schema (schema.prisma) is updated (migration)
 
 ```
+
 $ npm run prisma:migration
+
 ```
 
 - Also generate types
 
 ```
+
 $ npm run prisma:gen
+
 ```
 
 - Lastely if ModelName or new Model is added, Be sure to add key-pair value for (Prisma.ModelName: <Model>CreateManyInput), this is for Insert function type safefy.
@@ -77,3 +84,7 @@ $ npm run prisma:gen
   - ~~Basic end to end with auth~~
 
 - Husky
+
+```
+
+```
