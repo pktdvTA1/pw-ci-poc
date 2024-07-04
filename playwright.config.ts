@@ -66,6 +66,17 @@ export default defineConfig({
 			testMatch: '*-db.spec.ts',
 			dependencies: ['setup_DB'],
 		},
+		{
+			name: 'setup_Login',
+			testDir: './tests/setup',
+			testMatch: 'login.setup.ts',
+		},
+		{
+			name: 'testLogin',
+			testDir: './tests/e2e/sauceDemo[no-login]',
+			testMatch: '*.spec.ts',
+			dependencies: ['setup_Login'],
+		},
 	],
 
 	/* Run your local dev server before starting the tests */
