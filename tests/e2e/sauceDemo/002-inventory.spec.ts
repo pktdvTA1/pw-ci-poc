@@ -12,6 +12,6 @@ test.describe('test auth', async () => {
 		await inv.close();
 	});
 	test('bypass login', async () => {
-		await inv.close();
+		await inv.toBeOnInventoryPage();
 	});
 });
