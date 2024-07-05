@@ -14,7 +14,7 @@ setup.describe('login setup tests', () => {
 		await loginPage.goto();
 	});
 	setup.afterAll(async () => {
-		loginPage.page.close();
+		await loginPage.page.close();
 	});
 
 	setup('login_setup', async ({ page }) => {
