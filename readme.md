@@ -24,10 +24,11 @@ $ npm run pw:tdb
 
 The Login with POMs + Setup and StorageState.
 
-The basic Login has has cookie and origins set as empty to avoid auth,
+The Setup (as a dependencies) are in `./tests/setup/login.setup.ts`. Assumed that we're using only 1 signle account, This setup will run as global setup for Saucelab project using valid account, After it's successfully login it will then create the session storage file in `tests/.auth/loginSetup.json` this will be used as sharing state for each and every suites under the same project to avoid login.
 
-The inventory despite only single test(fornow) is to demonstrate.
-An directly access page via URL.
+- The basicLogin has has cookie and origins set as empty to avoid auth,
+
+- The inventory spec file has bypassed the login via setup
 
 ```
 $ npm run pw:sd
@@ -84,4 +85,4 @@ $ npm run prisma:gen
   - ~~Basic end to end with auth~~
 
 - Husky
-  - ~~precommit~~
+  - ~~precommit > prepush~~

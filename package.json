@@ -11,7 +11,7 @@
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
 		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma",
-		"precommit": "husky precommit"
+		"prepush": "husky prepush"
 	},
 	"keywords": [],
 	"author": "",
