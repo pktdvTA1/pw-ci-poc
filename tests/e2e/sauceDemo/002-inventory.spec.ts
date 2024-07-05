@@ -39,7 +39,7 @@ test.describe('Inventory tests', () => {
 		const productNames = await inv.getProductNames();
 		const sortedProductNames = [...productNames].sort();
 
-		expect(productNames).toEqual(sortedProductNames);
+		expect(productNames).toStrictEqual(sortedProductNames);
 	});
 
 	test('Filter products name by (Z to A) should sort products by name (Z to A)', async ({}) => {
@@ -48,7 +48,7 @@ test.describe('Inventory tests', () => {
 		const productNames = await inv.getProductNames();
 		const sortedProductNames = [...productNames].sort().reverse();
 
-		expect(productNames).toEqual(sortedProductNames);
+		expect(productNames).toStrictEqual(sortedProductNames);
 	});
 
 	test('Filter products price by (low to high) should sort products by price (low to high)', async ({}) => {
@@ -57,7 +57,7 @@ test.describe('Inventory tests', () => {
 		const productPrices = await inv.getProductPrices();
 		const sortedProductPrices = [...productPrices].sort((a, b) => a - b);
 
-		expect(productPrices).toEqual(sortedProductPrices);
+		expect(productPrices).toStrictEqual(sortedProductPrices);
 	});
 
 	test('Filter products price by (high to low) should sort products by price (high to low)', async ({}) => {
@@ -66,6 +66,6 @@ test.describe('Inventory tests', () => {
 		const productPrices = await inv.getProductPrices();
 		const sortedProductPrices = [...productPrices].sort((a, b) => b - a);
 
-		expect(productPrices).toEqual(sortedProductPrices);
+		expect(productPrices).toStrictEqual(sortedProductPrices);
 	});
 });

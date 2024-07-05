@@ -53,7 +53,7 @@ export namespace InventoryService {
 		}
 
 		async getProductNames() {
-			return this.productName.allInnerTexts();
+			return await this.productName.allInnerTexts();
 		}
 
 		async getProductPrices() {

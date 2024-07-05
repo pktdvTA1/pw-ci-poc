@@ -86,7 +86,7 @@ test.describe('Basic Login tests', () => {
 });
 
 test.describe('Access without login', () => {
-	test.beforeEach(async ({ page, request }) => {
+	test.beforeEach(({ page, request }) => {
 		loginPageAssertions = new LoginService.LoginPageAssertions(page);
 		inventoryManager = new InventoryService.InventoryManager(page, request);
 	});
