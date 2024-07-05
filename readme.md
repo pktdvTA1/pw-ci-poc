@@ -77,3 +77,4 @@ $ npm run prisma:gen
   - ~~Basic end to end with auth~~
 
 - Husky
+  - ~~precommit~~
