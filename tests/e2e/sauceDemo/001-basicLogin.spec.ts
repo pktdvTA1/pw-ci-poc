@@ -1,18 +1,19 @@
 import { expect, test } from '@playwright/test';
-import { loginService } from '~poms/basicLogin.page';
+import { LoginService } from '~poms/basicLogin.page';
 import { InventoryService } from '~poms/inventory.page';
 
-let loginPage: loginService.LoginPage;
-let loginPageAssertions: loginService.LoginPageAssertions;
+let loginPage: LoginService.LoginPage;
+let loginPageAssertions: LoginService.LoginPageAssertions;
 let inventoryAssertion: InventoryService.InventoryAssertion;
+let inventoryManager: InventoryService.InventoryManager;
 
 test.use({ storageState: { cookies: [], origins: [] } });
 test.describe.configure({ mode: 'parallel' });
 
 test.describe('Basic Login tests', () => {
 	test.beforeEach(async ({ page, request }) => {
-		loginPage = new loginService.LoginPage(page);
-		loginPageAssertions = new loginService.LoginPageAssertions(page);
+		loginPage = new LoginService.LoginPage(page);
+		loginPageAssertions = new LoginService.LoginPageAssertions(page);
 		inventoryAssertion = new InventoryService.InventoryAssertion(page, request);
 
 		await loginPage.goto();
@@ -80,6 +81,20 @@ test.describe('Basic Login tests', () => {
 		await loginPage.loginButton.click();
 		await expect(loginPageAssertions.errorMessage).toContainText(
 			'Username and password do not match any user in this service'
+		);
+	});
+});
+
+test.describe('Access without login', () => {
+	test.beforeEach(async ({ page }) => {
+		loginPageAssertions = new LoginService.LoginPageAssertions(page);
+		inventoryManager = new InventoryService.InventoryManager(page);
+	});
+
+	test('Arbitrary access inventory page without login should be failure', async () => {
+		await inventoryManager.goto();
+		await expect(loginPageAssertions.errorMessage).toHaveText(
+			"Epic sadface: You can only access '/inventory.html' when you are logged in."
 		);
 	});
 });
