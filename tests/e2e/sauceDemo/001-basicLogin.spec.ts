@@ -86,9 +86,9 @@ test.describe('Basic Login tests', () => {
 });
 
 test.describe('Access without login', () => {
-	test.beforeEach(async ({ page }) => {
+	test.beforeEach(async ({ page, request }) => {
 		loginPageAssertions = new LoginService.LoginPageAssertions(page);
-		inventoryManager = new InventoryService.InventoryManager(page);
+		inventoryManager = new InventoryService.InventoryManager(page, request);
 	});
 
 	test('Arbitrary access inventory page without login should be failure', async () => {
