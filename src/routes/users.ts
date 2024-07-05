@@ -1,32 +1,24 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { PrismaClient } from '@prisma/client';
+import { userSchema } from '~src/schema/users';
+import { StatusCode } from '~src/enums/statuCode';
 
 export namespace userRoutes {
 	const prisma = new PrismaClient();
-	export const users = async (app: FastifyInstance) => {
-		app.get('/users', () => {
-			const users = prisma.users.findMany({
+	export const users = async (app: FastifyInstance, reply: FastifyReply) => {
+		app.get('/users', async () => {
+			const users = await prisma.users.findMany({
 				where: {
 					is_active: true,
 					is_deleted: false,
 				},
 			});
-			return users;
+			return reply.code(StatusCode.OK_200).send(users);
 		});
+
 		app.get(
 			'/user/:id',
-			{
-				schema: {
-					params: {
-						type: 'object',
-						properties: {
-							id: {
-								type: 'integer',
-							},
-						},
-					},
-				},
-			},
+			userSchema.getByIndex,
 			async (
 				request: FastifyRequest<{ Params: { id: number } }>,
 				reply: FastifyReply
@@ -40,9 +32,9 @@ export namespace userRoutes {
 							is_deleted: false,
 						},
 					});
-					return reply.code(200).send(user);
+					return reply.code(StatusCode.OK_200).send(user);
 				} catch (e) {
-					return reply.code(404).send({
+					return reply.code(StatusCode.NOT_FOUND_404).send({
 						msg: 'user not found',
 					});
 				}
