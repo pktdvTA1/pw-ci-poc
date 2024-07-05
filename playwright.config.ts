@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import { envConfig } from './src/configs/env';
+import { existsSync } from 'fs';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -72,7 +73,9 @@ export default defineConfig({
 			dependencies: ['setup_sauceDemo'],
 			use: {
 				...devices['Desktop Chrome'],
-				storageState: 'tests/.auth/loginSetup.json',
+				storageState: existsSync('tests/.auth/loginSetup.json')
+					? 'tests/.auth/loginSetup.json'
+					: undefined,
 			},
 		},
 		{

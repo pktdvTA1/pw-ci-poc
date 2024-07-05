@@ -10,7 +10,8 @@
 		"pw:sd": "playwright test --project=sauceDemo",
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
-		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma"
+		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma",
+		"precommit": "husky precommit"
 	},
 	"keywords": [],
 	"author": "",
@@ -30,6 +31,7 @@
 		"@types/jsonwebtoken": "^9.0.6",
 		"dotenv": "^16.4.5",
 		"eslint-plugin-playwright": "^1.6.2",
+		"husky": "^9.0.11",
 		"jsonwebtoken": "^9.0.2",
 		"jwt-decode": "^4.0.0",
 		"playwright": "^1.45.1",

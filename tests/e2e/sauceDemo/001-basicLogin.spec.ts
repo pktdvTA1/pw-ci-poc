@@ -10,11 +10,11 @@ let inventoryManager: InventoryService.InventoryManager;
 test.use({ storageState: { cookies: [], origins: [] } });
 test.describe.configure({ mode: 'parallel' });
 
-test.describe('Basic Login', () => {
-	test.beforeEach(async ({ page }) => {
+test.describe('Basic Login tests', () => {
+	test.beforeEach(async ({ page, request }) => {
 		loginPage = new LoginService.LoginPage(page);
 		loginPageAssertions = new LoginService.LoginPageAssertions(page);
-		inventoryAssertion = new InventoryService.InventoryAssertion(page);
+		inventoryAssertion = new InventoryService.InventoryAssertion(page, request);
 
 		await loginPage.goto();
 	});
@@ -86,9 +86,9 @@ test.describe('Basic Login', () => {
 });
 
 test.describe('Access without login', () => {
-	test.beforeEach(async ({ page }) => {
+	test.beforeEach(({ page, request }) => {
 		loginPageAssertions = new LoginService.LoginPageAssertions(page);
-		inventoryManager = new InventoryService.InventoryManager(page);
+		inventoryManager = new InventoryService.InventoryManager(page, request);
 	});
 
 	test('Arbitrary access inventory page without login should be failure', async () => {
