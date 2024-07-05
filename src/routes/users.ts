@@ -5,8 +5,9 @@ import { StatusCode } from '~src/enums/statuCode';
 
 export namespace userRoutes {
 	const prisma = new PrismaClient();
+
 	export const users = async (app: FastifyInstance, reply: FastifyReply) => {
-		app.get('/users', async () => {
+		app.get('/api/users', async () => {
 			const users = await prisma.users.findMany({
 				where: {
 					is_active: true,
@@ -17,8 +18,10 @@ export namespace userRoutes {
 		});
 
 		app.get(
-			'/user/:id',
-			userSchema.getByIndex,
+			'/api/user/:id',
+			{
+				schema: userSchema.getByIndex,
+			},
 			async (
 				request: FastifyRequest<{ Params: { id: number } }>,
 				reply: FastifyReply
@@ -36,6 +39,39 @@ export namespace userRoutes {
 				} catch (e) {
 					return reply.code(StatusCode.NOT_FOUND_404).send({
 						msg: 'user not found',
+					});
+				}
+			}
+		);
+
+		app.patch(
+			'/api/user/:id',
+			{ schema: userSchema.updateById },
+			async (
+				request: FastifyRequest<{
+					Params: { id: number };
+					Body: { [key: string]: any };
+				}>,
+				reply: FastifyReply
+			) => {
+				const { id } = request.params;
+				const { firstName, lastName, isActive, isDelete } = request.body;
+				try {
+					const r = await prisma.users.update({
+						where: {
+							id: id,
+						},
+						data: {
+							first_name: firstName,
+							last_name: lastName,
+							is_active: isActive,
+							is_deleted: isDelete,
+						},
+					});
+					return reply.code(StatusCode.OK_200).send(r);
+				} catch (e: any) {
+					return reply.code(StatusCode.NOT_FOUND_404).send({
+						msg: 'User or Data is invalid',
 					});
 				}
 			}
