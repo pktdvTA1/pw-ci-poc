@@ -3,6 +3,7 @@ import { InventoryService } from '~poms/inventory.page';
 
 let inv: InventoryService.InventoryAssertion;
 
+test.describe.configure({ mode: 'parallel' });
 test.describe('Inventory tests', () => {
 	test.beforeEach(async ({ page, request }) => {
 		inv = new InventoryService.InventoryAssertion(page, request);
