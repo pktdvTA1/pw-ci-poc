@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyRequest } from 'fastify';
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { PrismaClient } from '@prisma/client';
 
 export namespace userRoutes {
@@ -27,16 +27,25 @@ export namespace userRoutes {
 					},
 				},
 			},
-			(request: FastifyRequest<{ Params: { id: number } }>) => {
+			async (
+				request: FastifyRequest<{ Params: { id: number } }>,
+				reply: FastifyReply
+			) => {
 				const { id } = request.params;
-				const user = prisma.users.findUniqueOrThrow({
-					where: {
-						id: id,
-						is_active: true,
-						is_deleted: false,
-					},
-				});
-				return user;
+				try {
+					const user = await prisma.users.findUniqueOrThrow({
+						where: {
+							id: id,
+							is_active: true,
+							is_deleted: false,
+						},
+					});
+					return reply.code(200).send(user);
+				} catch (e) {
+					return reply.code(404).send({
+						msg: 'user not found',
+					});
+				}
 			}
 		);
 	};
