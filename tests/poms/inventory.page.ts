@@ -1,6 +1,7 @@
 import type { APIRequestContext, Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 const baseURL = 'https://www.saucedemo.com';
+type SortOption = 'az' | 'za' | 'lohi' | 'hilo';
 export namespace InventoryService {
 	export class InventoryManager {
 		page: Page;
@@ -27,21 +28,27 @@ export namespace InventoryService {
 			await this.page.close();
 		}
 
-		async addProductToCart(addProductButtonTestId: string) {
-			const addProductButton = this.page.locator(
-				`[data-test="${addProductButtonTestId}"]`
+		async addProductToCart(productName: string) {
+			const productLocator = this.page
+				.locator('.inventory_item')
+				.filter({ hasText: productName });
+			const addProductButton = productLocator.locator(
+				'button:has-text("Add to cart")'
 			);
 			await addProductButton.click();
 		}
 
-		async removeProductFromCart(removeProductButtonTestId: string) {
-			const removeProductButton = this.page.locator(
-				`[data-test="${removeProductButtonTestId}"]`
+		async removeProductFromCart(productName: string) {
+			const productLocator = this.page
+				.locator('.inventory_item')
+				.filter({ hasText: productName });
+			const removeProductButton = productLocator.locator(
+				'button:has-text("Remove")'
 			);
 			await removeProductButton.click();
 		}
 
-		async sortProductsBy(option: string) {
+		async sortProductsBy(option: SortOption) {
 			await this.page.selectOption('.product_sort_container', option);
 		}
 
@@ -50,18 +57,11 @@ export namespace InventoryService {
 		}
 
 		async getProductPrices() {
-			const productPrices = await this.page.locator('.inventory_item_price');
+			const productPrices = this.page.locator('.inventory_item_price');
 			const pricesText = await productPrices.allInnerTexts();
 			return pricesText.map((price) =>
 				parseFloat(price.replace('$', '').trim())
 			);
-		}
-
-		async clearCart() {
-			const response = await this.request.delete(`${baseURL}/api/cart`);
-			if (!response.ok()) {
-				throw new Error('Failed to clear cart');
-			}
 		}
 	}
 	export class InventoryAssertion extends InventoryManager {

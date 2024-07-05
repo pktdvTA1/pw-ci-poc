@@ -3,6 +3,7 @@ import { InventoryService } from '~poms/inventory.page';
 
 let inv: InventoryService.InventoryAssertion;
 
+test.describe.configure({ mode: 'parallel' });
 test.describe('Inventory tests', () => {
 	test.beforeEach(async ({ page, request }) => {
 		inv = new InventoryService.InventoryAssertion(page, request);
@@ -17,18 +18,18 @@ test.describe('Inventory tests', () => {
 
 	test('Add many products to cart should have shopping cart badge on cart icon with count', async () => {
 		await inv.toBeOnInventoryPage();
-		await inv.addProductToCart('add-to-cart-sauce-labs-backpack');
-		await inv.addProductToCart('add-to-cart-sauce-labs-bike-light');
-		await inv.addProductToCart('add-to-cart-sauce-labs-bolt-t-shirt');
+		await inv.addProductToCart('Sauce Labs Backpack');
+		await inv.addProductToCart('Sauce Labs Bike Light');
+		await inv.addProductToCart('Sauce Labs Bolt T-Shirt');
 		await inv.toHaveShoppingCartBadge('3');
 	});
 
 	test('Add many products to cart then remove should update shopping cart badge count on cart icon', async () => {
 		await inv.toBeOnInventoryPage();
-		await inv.addProductToCart('add-to-cart-sauce-labs-backpack');
-		await inv.addProductToCart('add-to-cart-sauce-labs-bike-light');
-		await inv.addProductToCart('add-to-cart-sauce-labs-bolt-t-shirt');
-		await inv.removeProductFromCart('remove-sauce-labs-backpack');
+		await inv.addProductToCart('Sauce Labs Backpack');
+		await inv.addProductToCart('Sauce Labs Bike Light');
+		await inv.addProductToCart('Sauce Labs Bolt T-Shirt');
+		await inv.removeProductFromCart('Sauce Labs Backpack');
 		await inv.toHaveShoppingCartBadge('2');
 	});
 
