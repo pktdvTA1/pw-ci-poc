@@ -11,7 +11,7 @@ module.exports = [
 			'@typescript-eslint/no-namespace': 'off',
 			'@typescript-eslint/no-unused-vars': 'error',
 			'@typescript-eslint/no-inner-declarations': 'off',
-			'require-await': 'warn',
+			'require-await': 'off',
 		},
 	})),
 	{
