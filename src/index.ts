@@ -1,7 +1,9 @@
 import { app } from './app';
+import { envConfig } from './configs/env';
 
-const host = 'localhost';
-const port = 3000;
+const host = envConfig.HOST;
+const port = envConfig.PORT;
+
 const start = async () => {
 	try {
 		await app.listen({ host: host, port: port as number });

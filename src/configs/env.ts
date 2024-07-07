@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 export const envConfig = {
 	HOST: process.env.HOST || 'localhost',
-	PORT: process.env.PORT || '',
+	PORT: process.env.PORT || 3000,
 	DB: {
 		host: process.env.DB_HOST || 'localhost',
 		port: process.env.DB_PORT || 5432,

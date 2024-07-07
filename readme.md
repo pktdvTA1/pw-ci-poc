@@ -1,9 +1,14 @@
-# installation
+# installation & getting start
 
 ```
 $ npm i
-// for postgress with port 5432
+// DB, for postgres with port 5432
 $ docker-compose up -d
+// Prisma
+// Migrate db
+$ npm run prisma:migration
+// Generate type safty
+$ npm run prisma:gen
 
 ```
 
@@ -12,12 +17,21 @@ $ docker-compose up -d
 ## API
 
 ```
-// normal API req (postmanEcho, jsonplaceholder)
+// normal external API requests (postmanEcho, jsonplaceholder)
 $ npm run pw:api
 
-// with DB using Prisma which require the actual db(postgres) atleast in docker
+// POC of setup/teardown database using Prisma which require the actual db(postgres) atleast in docker
 // this will execute the truncate and insert at setup level
 $ npm run pw:tdb
+```
+
+## Running simple API
+
+```
+// port is 3000 by default
+// Also require database connection as well
+$ npm run dev
+
 ```
 
 ## UI ([basic](https://todomvc.com/examples/react/dist/), [login](https://www.saucedemo.com/))
@@ -70,7 +84,7 @@ $ npm run prisma:gen
 - Setup & Global setup
 - Setup simple API
 
-  - Connect with actual db
+  - ~~Connect with DB~~
 
     - ~~Prisma~~
       - ~~docker-compose.yaml~~
