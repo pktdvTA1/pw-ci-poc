@@ -6,8 +6,8 @@ import { StatusCode } from '~src/enums/statuCode';
 export namespace userRoutes {
 	const prisma = new PrismaClient();
 
-	export const users = async (app: FastifyInstance, reply: FastifyReply) => {
-		app.get('/api/users', async () => {
+	export const users = async (app: FastifyInstance) => {
+		app.get('/api/users', async (reqeust, reply: FastifyReply) => {
 			const users = await prisma.users.findMany({
 				where: {
 					is_active: true,
