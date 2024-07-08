@@ -66,9 +66,8 @@ export namespace jsonPlaceholderRoute {
 					user.getUserLists(true),
 					JPH.getPostByPostId(id),
 				]);
-
 				const userid = users.map((v) => v.id);
-				if (!userid.includes(pst.userId)) {
+				if (!userid.includes(pst.userId) || Object.keys(pst).length === 0) {
 					return reply.code(StatusCode.NOT_FOUND_404).send({
 						msg: 'Post Not Found',
 					});
