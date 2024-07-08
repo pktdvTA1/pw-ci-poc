@@ -33,10 +33,13 @@ test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 test.describe.configure({ mode: 'default' });
 
 test.describe('Stub with sinon', () => {
+	test.beforeAll(async () => {
+		await app.ready();
+	});
+	test.afterAll(async () => {
+		await app.close();
+	});
 	test.describe('Get All Posts of all users (except deleted)', () => {
-		test.beforeAll(async () => {
-			await app.ready();
-		});
 		// becaise no server nor db is running .restore() will cause the failure
 		// test.afterEach(async () => {
 		// 	getPostStub.restore();

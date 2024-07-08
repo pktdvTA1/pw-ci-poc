@@ -9,6 +9,7 @@
 		"pw:ui": "playwright test --ui",
 		"pw:td": "playwright test --project=td",
 		"pw:sd": "playwright test --project=sauceDemo",
+		"pw:stub": "playwright test --project=stub",
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
 		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma",
