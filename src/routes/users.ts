@@ -10,12 +10,34 @@ export namespace userRoutes {
 		app.get('/api/users', async (reqeust, reply: FastifyReply) => {
 			const users = await prisma.users.findMany({
 				where: {
-					is_active: true,
 					is_deleted: false,
 				},
 			});
 			return reply.code(StatusCode.OK_200).send(users);
 		});
+
+		app.get(
+			'/api/user/filter',
+			{ schema: userSchema.filter },
+			async (
+				request: FastifyRequest<{
+					Querystring: {
+						is_active: boolean;
+					};
+				}>,
+				reply: FastifyReply
+			) => {
+				const { is_active } = request.query;
+				const users = await prisma.users.findMany({
+					where: {
+						// is_active: is_active.toLowerCase() === 'true' ? true : false
+						is_active: is_active,
+						is_deleted: false,
+					},
+				});
+				return reply.code(StatusCode.OK_200).send(users);
+			}
+		);
 
 		app.get(
 			'/api/user/:id',

@@ -3,7 +3,7 @@ import { test } from '~fixtures/pmEcho';
 import { jwtDecode } from 'jwt-decode';
 /**
  * This suite uses fixture style.
- * To put it simple we move beforeEac() to fixture instead
+ * To put it simple we move beforeEach() to fixture instead
  * So we can customize each setup for each tests individually
  * And also reuse existing fixture if it's suite your test
  */

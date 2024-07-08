@@ -47,7 +47,12 @@ export default defineConfig({
 		{
 			name: 'setup_DB',
 			testDir: './tests/setup',
-			testMatch: '*.setup.ts',
+			testMatch: '*db.setup.ts',
+		},
+		{
+			name: 'setup_sauceDemo',
+			testDir: './tests/setup',
+			testMatch: '*login.setup.ts',
 		},
 		{
 			name: 'api',
@@ -60,11 +65,6 @@ export default defineConfig({
 			testDir: './tests/integration',
 			testMatch: '*-db.spec.ts',
 			dependencies: ['setup_DB'],
-		},
-		{
-			name: 'setup_sauceDemo',
-			testDir: './tests/setup',
-			testMatch: 'login.setup.ts',
 		},
 		{
 			name: 'sauceDemo',
