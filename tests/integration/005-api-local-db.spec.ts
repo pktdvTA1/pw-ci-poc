@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { envConfig } from '~src/configs/env';
-
+/*
+simeple style, All in one file
+This required server to be running
+And also required database setup
+*/
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 test.describe.configure({ mode: 'parallel' });
+
 test.describe('#Get User List', () => {
 	test('When get user list by default, should return all status and not deleted.', async ({
 		request,
