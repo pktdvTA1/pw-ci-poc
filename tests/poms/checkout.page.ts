@@ -41,7 +41,7 @@ export namespace CheckoutService {
 		}
 
 		async getProductNames() {
-			return this.page
+			return await this.page
 				.locator('.cart_item .inventory_item_name')
 				.allInnerTexts();
 		}
