@@ -29,6 +29,6 @@ test.describe('Checkout tests', () => {
 		expect(checkoutProductNames[1]).toBe('Sauce Labs Bike Light');
 		expect(checkoutProductNames[2]).toBe('Sauce Labs Bolt T-Shirt');
 		await checkout.finishButton.click();
-		await checkout.toBeOnCheckoutCompletePage('Checkout: Complete!');
+		await checkout.toBeOnCheckoutCompletePage();
 	});
 });

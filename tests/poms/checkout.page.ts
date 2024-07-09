@@ -14,6 +14,8 @@ export namespace CheckoutService {
 		postalCodeInput: Locator;
 		continueButton: Locator;
 		finishButton: Locator;
+		completeHeader: Locator;
+		completeBody: Locator;
 		constructor(page: Page) {
 			this.page = page;
 			this.title = page.locator('span.title');
@@ -25,6 +27,8 @@ export namespace CheckoutService {
 			this.postalCodeInput = page.locator('#postal-code');
 			this.continueButton = page.locator('#continue');
 			this.finishButton = page.locator('#finish');
+			this.completeHeader = page.locator('.complete-header');
+			this.completeBody = page.locator('.complete-text');
 		}
 		async goto() {
 			await this.page.goto(this.endPoint);
@@ -55,9 +59,14 @@ export namespace CheckoutService {
 			await expect(this.cartContainer).toBeVisible();
 			await expect(this.title).toHaveText('Your Cart');
 		}
-		async toBeOnCheckoutCompletePage(textAssertion: string) {
+
+		async toBeOnCheckoutCompletePage() {
 			await expect(this.page).toHaveURL(/.*\/checkout-complete.html/);
-			await expect(this.title).toHaveText(textAssertion);
+			await expect(this.title).toHaveText('Checkout: Complete!');
+			await expect(this.completeHeader).toHaveText('Thank you for your order!');
+			await expect(this.completeBody).toHaveText(
+				'Your order has been dispatched, and will arrive just as fast as the pony can get there!'
+			);
 		}
 	}
 }
