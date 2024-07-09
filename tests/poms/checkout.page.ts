@@ -55,5 +55,9 @@ export namespace CheckoutService {
 			await expect(this.cartContainer).toBeVisible();
 			await expect(this.title).toHaveText('Your Cart');
 		}
+		async toBeOnCheckoutCompletePage(textAssertion: string) {
+			await expect(this.page).toHaveURL(/.*\/checkout-complete.html/);
+			await expect(this.title).toHaveText(textAssertion);
+		}
 	}
 }

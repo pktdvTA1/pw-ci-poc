@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { CheckoutService } from '~poms/cart.page';
+import { CheckoutService } from '~poms/checkout.page';
 import { InventoryService } from '~poms/inventory.page';
 
 let checkout: CheckoutService.CheckoutAssertion;
@@ -25,10 +25,10 @@ test.describe('Checkout tests', () => {
 		await checkout.fillPersonalInformation();
 		await checkout.continueButton.click();
 		const checkoutProductNames = await checkout.getProductNames();
-		expect(checkoutProductNames[0]).toStrictEqual('Sauce Labs Backpack');
-		expect(checkoutProductNames[1]).toStrictEqual('Sauce Labs Bike Light');
-		expect(checkoutProductNames[2]).toStrictEqual('Sauce Labs Bolt T-Shirt');
+		expect(checkoutProductNames[0]).toBe('Sauce Labs Backpack');
+		expect(checkoutProductNames[1]).toBe('Sauce Labs Bike Light');
+		expect(checkoutProductNames[2]).toBe('Sauce Labs Bolt T-Shirt');
 		await checkout.finishButton.click();
-		await expect(checkout.title).toHaveText('Checkout: Complete!');
+		await checkout.toBeOnCheckoutCompletePage('Checkout: Complete!');
 	});
 });
