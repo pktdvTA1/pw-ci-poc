@@ -58,7 +58,7 @@ export default defineConfig({
 			name: 'api',
 			testDir: './tests/integration',
 			testMatch: '*.spec.ts',
-			testIgnore: '*db*',
+			testIgnore: ['*db*', '*sinon*'],
 		},
 		{
 			name: 'testDB',
@@ -85,6 +85,11 @@ export default defineConfig({
 			use: {
 				...devices['Desktop Chrome'],
 			},
+		},
+		{
+			name: 'stub',
+			testDir: './tests/integration',
+			testMatch: '*-sinon.spec.ts',
 		},
 	],
 

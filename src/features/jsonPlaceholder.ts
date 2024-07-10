@@ -6,7 +6,7 @@ export interface Post {
 	body: string;
 }
 export class JPHManager {
-	baseURL: string = 'https://jsonplaceholder.typicode.com';
+	readonly baseURL: string = 'https://jsonplaceholder.typicode.com';
 	constructor() {}
 
 	async getAllPosts(): Promise<Post[]> {
