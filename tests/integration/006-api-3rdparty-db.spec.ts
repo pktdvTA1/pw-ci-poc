@@ -8,8 +8,8 @@ import { envConfig } from '~src/configs/env';
 const activeUserList = [1, 2];
 
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
-test.describe.configure({ mode: 'parallel' });
 
+test.describe.configure({ mode: 'parallel' });
 test.describe('Local Server With 3rd Party', () => {
 	test.describe('#GET /posts', () => {
 		test('When get all posts should return only posts of active user.', async ({
