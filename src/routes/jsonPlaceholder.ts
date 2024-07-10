@@ -25,9 +25,11 @@ export namespace jsonPlaceholderRoute {
 			} catch (e) {
 				throw new Error(`Unable to either get user list or posts due to ${e}`);
 			}
-			const userid = users.map((v) => {
-				return v.id;
-			});
+			const userid = users
+				.filter((v) => !v.is_deleted)
+				.map((v) => {
+					return v.id;
+				});
 			const list = posts.filter((v) => userid.includes(v.userId));
 			return reply.code(StatusCode.OK_200).send(list);
 		});
@@ -66,9 +68,8 @@ export namespace jsonPlaceholderRoute {
 					user.getUserLists(true),
 					JPH.getPostByPostId(id),
 				]);
-
 				const userid = users.map((v) => v.id);
-				if (!userid.includes(pst.userId)) {
+				if (!userid.includes(pst.userId) || Object.keys(pst).length === 0) {
 					return reply.code(StatusCode.NOT_FOUND_404).send({
 						msg: 'Post Not Found',
 					});

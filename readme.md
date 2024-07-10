@@ -32,6 +32,13 @@ $ npm run pw:tdb
 // Also require database connection as well
 $ npm run dev
 
+// The POC of connecting to 3rd party (jsonPlaceholder)
+// a local API doing simple logic file
+
+> ./tests/integration/006-api-3rdparty-db.spec.ts
+
+// how ever the actual purpose of this is for stubbing (detail below)
+
 ```
 
 ## UI ([basic](https://todomvc.com/examples/react/dist/), [login](https://www.saucedemo.com/))
@@ -49,7 +56,7 @@ $ npm run pw:sd
 
 ```
 
-# [eslint](https://www.npmjs.com/package/eslint-plugin-playwright)
+## [eslint](https://www.npmjs.com/package/eslint-plugin-playwright)
 
 ```
 
@@ -57,7 +64,7 @@ $ npm run eslint:fix
 
 ```
 
-# Prisma `./databases/prisma`
+## Prisma `./databases/prisma`
 
 - When the schema (schema.prisma) is updated (migration)
 
@@ -77,6 +84,20 @@ $ npm run prisma:gen
 
 - Lastely if ModelName or new Model is added, Be sure to add key-pair value for (Prisma.ModelName: <Model>CreateManyInput), this is for Insert function type safefy.
 
+## Sinon stub
+
+Ideally There's no need for db setup or even internet connection
+Currently running via npm run command is not support yet.
+
+Still have no clue why but ultimately it must be able to so that we can run in CI mode.
+
+So for now it's only executable in the vscode itself. (and dont forget to enable the stub project so the Green play button is visible)
+
+```
+the file is
+> ./tests/integration/007-api-3rdparty-sinon.spec.ts
+```
+
 # Todo
 
 - ~~Eslint~~
@@ -90,7 +111,7 @@ $ npm run prisma:gen
       - ~~docker-compose.yaml~~
       - ~~Migration~~
 
-  - Stub
+  - Stub (80%)
   - nock
 
 - UI
@@ -99,4 +120,7 @@ $ npm run prisma:gen
   - ~~Basic end to end with auth~~
 
 - Husky
+
   - ~~precommit > prepush~~
+
+- better docs
