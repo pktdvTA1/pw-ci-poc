@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { JPHManager } from '~src/features/jsonPlaceholder';
 import { UserManagement } from '~src/repositories/users';
 import { envConfig } from '~src/configs/env';
-import { app } from '~src/index';
+import { app } from '~src/app';
 import * as sinon from 'sinon';
 /**
  * This stubs out the 3rd party which is jsonPlaceholder
@@ -19,6 +19,12 @@ import * as sinon from 'sinon';
 
 const getPostStub = sinon.stub(JPHManager.prototype, 'getAllPosts');
 const getUserListStub = sinon.stub(UserManagement.prototype, 'getUserLists');
+const getUserByIdStub = sinon.stub(UserManagement.prototype, 'getUserById');
+const postCreatePostStub = sinon.stub(
+	JPHManager.prototype,
+	'createNewPostWithUserId'
+);
+
 const defaultPost = [
 	{
 		userId: 1,
@@ -34,7 +40,10 @@ test.describe.configure({ mode: 'default' });
 
 test.describe('Stub with sinon', () => {
 	test.beforeAll(async () => {
-		await app.ready();
+		const host = envConfig.HOST;
+		const port = envConfig.PORT;
+		await app.listen({ host: host, port: port as number });
+		// await app.ready();
 	});
 	test.afterAll(async () => {
 		await app.close();
@@ -99,7 +108,7 @@ test.describe('Stub with sinon', () => {
 		test('When user has no posts should return empty array', async ({
 			request,
 		}) => {
-			const u = [...defaultUser];
+			const u = [{ ...defaultUser[0] }];
 			u[0].id = 999;
 			getUserListStub.resolves(u as never);
 			getPostStub.resolves([]);
@@ -109,6 +118,148 @@ test.describe('Stub with sinon', () => {
 
 			await expect(res).toBeOK();
 			expect(body).toStrictEqual([]);
+		});
+	});
+
+	test.describe('Creating Post various user.', () => {
+		/*
+		Control every ingest data both db and form 3rd party
+		w/o db or internet connection needed
+		 */
+		test('Create Post of active user should be successful.', async ({
+			request,
+		}) => {
+			const u = { ...defaultUser[0] };
+			const post = {
+				title: 'Stub Post',
+				body: 'Stub Body',
+			};
+			getUserByIdStub.resolves(u as never);
+			postCreatePostStub.resolves({
+				userId: 1,
+				id: 1,
+				title: post.title,
+				body: post.body,
+			});
+
+			const res = await request.post('/api/jph/post/1', {
+				data: post,
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.refId).toBeTruthy();
+			expect(body).toHaveProperty(
+				'detail',
+				`User Id of ${u.id} has created new post with ${post.title} and ${post.body}.`
+			);
+		});
+
+		test('Create Post of inactive user should be failure.', async ({
+			request,
+		}) => {
+			const u = { ...defaultUser[0], is_active: false };
+			const post = {
+				title: 'Stub Post',
+				body: 'Stub Body',
+			};
+			getUserByIdStub.resolves(u as never);
+			postCreatePostStub.resolves({
+				userId: 1,
+				id: 1,
+				title: post.title,
+				body: post.body,
+			});
+
+			const res = await request.post('/api/jph/post/1', {
+				data: post,
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body).toStrictEqual({
+				msg: 'User Not Found',
+			});
+		});
+
+		/*
+		simulating when test uncontrolable 3rd party to see our handler
+		 */
+		test('When JPH returns empty string for both title and body, Should be able to transform data.', async ({
+			request,
+		}) => {
+			const u = { ...defaultUser[0] };
+			const post = {
+				title: '',
+				body: '',
+			};
+			getUserByIdStub.resolves(u as never);
+			postCreatePostStub.resolves({
+				userId: 1,
+				id: 1,
+				title: post.title,
+				body: post.body,
+			});
+
+			const res = await request.post('/api/jph/post/1', {
+				data: post,
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body).toHaveProperty(
+				'detail',
+				`User Id of ${u.id} has created new post with ${post.title} and ${post.body}.`
+			);
+		});
+
+		test('When JPH returns boolean instead of string, should be able to handle as normal string.', async ({
+			request,
+		}) => {
+			const u = { ...defaultUser[0] };
+			const post = {
+				title: true,
+				body: false,
+			};
+			getUserByIdStub.resolves(u as never);
+			postCreatePostStub.resolves({
+				userId: 1,
+				id: 1,
+				title: post.title,
+				body: post.body,
+			});
+
+			const res = await request.post('/api/jph/post/1', {
+				data: post,
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body).toHaveProperty(
+				'detail',
+				`User Id of ${u.id} has created new post with ${post.title} and ${post.body}.`
+			);
+		});
+		test('When JPH returns undefined properties.', async ({ request }) => {
+			const u = { ...defaultUser[0] };
+			getUserByIdStub.resolves(u as never);
+			postCreatePostStub.resolves({
+				userId: 1,
+				id: 1,
+				title: undefined,
+				body: undefined,
+			});
+
+			const res = await request.post('/api/jph/post/1', {
+				data: {},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body).toHaveProperty(
+				'detail',
+				`User Id of ${u.id} has created new post with undefined and undefined.`
+			);
 		});
 	});
 });

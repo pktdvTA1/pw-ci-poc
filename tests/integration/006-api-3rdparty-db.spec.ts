@@ -122,4 +122,57 @@ test.describe('Local Server With 3rd Party', () => {
 			});
 		});
 	});
+
+	test.describe('#POST /post/:id', () => {
+		test('Create new post for active user should be have post data returned.', async ({
+			request,
+		}) => {
+			const res = await request.post('/api/jph/post/1', {
+				data: {
+					title: 'Active User Post title',
+					body: 'Active User Post body',
+				},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+
+			console.log(body);
+			expect(body.refId).toBeTruthy();
+			expect(body).toHaveProperty(
+				'detail',
+				'User Id of 1 has created new post with Active User Post title and Active User Post body.'
+			);
+		});
+
+		test('Create new post for inactive user should be failure', async ({
+			request,
+		}) => {
+			const res = await request.post('/api/jph/post/3', {
+				data: {
+					title: 'Active User Post title',
+					body: 'Active User Post body',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body).toHaveProperty('msg', 'User Not Found');
+		});
+
+		test('Create new post for deleted user should be failure', async ({
+			request,
+		}) => {
+			const res = await request.post('/api/jph/post/4', {
+				data: {
+					title: 'Active User Post title',
+					body: 'Active User Post body',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body).toHaveProperty('msg', 'User Not Found');
+		});
+	});
 });
