@@ -5,16 +5,21 @@ import { envConfig } from '~src/configs/env';
 import { app } from '~src/app';
 import * as sinon from 'sinon';
 /**
- * This stubs out the 3rd party which is jsonPlaceholder
- * This suite initiates the servier so no server running in background needed
- * Also stub the repository meaning no DB connection need either
+ * This stubs out the 3rd party which is jsonPlaceholder.
+ * In order to do so This suite has to initiate the server by itself.
+ * So no server running required.
+ * Also stub the repository meaning no DB connection need either.
+ * In conclusion, There's no need for internet connection, db or server.
  * Hopefully the realworld structure will be as easy as this one
  * Copium**
  * Pro
- * - we don't need to care about seeder data at all
- * - extremely fast
+ * - we don't need to care about anything
+ * - Extremely fast
  * Con
- * - Extremely hard because we need to find the right function
+ * - Painfully hard because we need to find the right function.
+ * - Stub with care, We want to test the logic or handler.
+ * Not the data returned (cause its a data we provided via stub).
+ * - It look very much like Unit Test, yes...
  */
 
 const getPostStub = sinon.stub(JPHManager.prototype, 'getAllPosts');
@@ -122,10 +127,6 @@ test.describe('Stub with sinon', () => {
 	});
 
 	test.describe('Creating Post various user.', () => {
-		/*
-		Control every ingest data both db and form 3rd party
-		w/o db or internet connection needed
-		 */
 		test('Create Post of active user should be successful.', async ({
 			request,
 		}) => {
@@ -182,9 +183,6 @@ test.describe('Stub with sinon', () => {
 			});
 		});
 
-		/*
-		simulating when test uncontrolable 3rd party to see our handler
-		 */
 		test('When JPH returns empty string for both title and body, Should be able to transform data.', async ({
 			request,
 		}) => {
