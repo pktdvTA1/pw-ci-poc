@@ -17,6 +17,8 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
+      - name: Prisma Initiation
+        run: npm run prism:gen
       - name: Running Tests
         run: npm run pw:stub
         env:
