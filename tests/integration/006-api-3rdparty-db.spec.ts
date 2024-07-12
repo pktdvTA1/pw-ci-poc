@@ -137,7 +137,6 @@ test.describe('Local Server With 3rd Party', () => {
 
 			await expect(res).toBeOK();
 
-			console.log(body);
 			expect(body.refId).toBeTruthy();
 			expect(body).toHaveProperty(
 				'detail',
