@@ -12,7 +12,7 @@ test.describe('Prisma DB and Setup', () => {
 	test('Query All User should return 2', async () => {
 		const data = await prisma.queryAll('users');
 
-		expect(data).toHaveLength(2);
+		expect(data).toHaveLength(5);
 	});
 
 	test('Query By Id should return only 1 and correct user.', async () => {

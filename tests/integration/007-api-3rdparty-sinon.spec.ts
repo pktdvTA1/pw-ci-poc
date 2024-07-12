@@ -19,7 +19,7 @@ import * as sinon from 'sinon';
  * - Painfully hard because we need to find the right function.
  * - Stub with care, We want to test the logic or handler.
  * Not the data returned (cause its a data we provided via stub).
- * - It look very much like Unit Test, yes...
+ * - It looks very much like Unit Test, yes...
  */
 
 const getPostStub = sinon.stub(JPHManager.prototype, 'getAllPosts');
