@@ -4,10 +4,10 @@ import { envConfig } from './configs/env';
 const host = envConfig.HOST;
 const port = envConfig.PORT;
 
-const start = async () => {
+export const start = async () => {
 	try {
 		await app.listen({ host: host, port: port as number });
-		console.log(`Server Started @ ${host}:${port}`);
+		console.log(`#### Server Started @ ${host}:${port} ####`);
 	} catch (e) {
 		app.log.error(e);
 		process.exit(1);
@@ -15,5 +15,3 @@ const start = async () => {
 };
 
 start();
-
-export { app };

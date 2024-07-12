@@ -5,7 +5,13 @@ import { StatusCode } from '~src/enums/statuCode';
 import { JPHSchema } from '~src/schema/jsonPlaceHolder';
 
 type FastifyGetById = FastifyRequest<{ Params: { id: number } }>;
-
+type FastifyCreatePost = FastifyRequest<{
+	Params: { id: number };
+	Body: {
+		title: string;
+		body: string;
+	};
+}>;
 export namespace jsonPlaceholderRoute {
 	const user = new UserManagement();
 	const JPH = new JPHManager();
@@ -75,6 +81,35 @@ export namespace jsonPlaceholderRoute {
 					});
 				}
 				return reply.code(StatusCode.OK_200).send(pst);
+			}
+		);
+		// create new post
+		app.post(
+			'/api/jph/post/:id',
+			{ schema: JPHSchema.createNewPost },
+			async (request: FastifyCreatePost, reply: FastifyReply) => {
+				const { id } = request.params;
+				const { title, body } = request.body;
+				const usr = await user.getUserById(id);
+
+				if (!usr || !usr.is_active) {
+					return reply
+						.code(StatusCode.NOT_FOUND_404)
+						.send({ msg: 'User Not Found' });
+				}
+				const post = await JPH.createNewPostWithUserId({
+					userId: usr.id,
+					title: title,
+					body: body,
+				});
+				// some random logic
+				const refId = ((Math.random() + 1).toString(36).substring(7) +
+					Math.floor(new Date().getTime() / 1000).toString()) as string;
+				const transformData = {
+					refId: refId,
+					detail: `User Id of ${post.userId} has created new post with ${post.title} and ${post.body}.`,
+				};
+				return reply.code(StatusCode.OK_200).send(transformData);
 			}
 		);
 	};
