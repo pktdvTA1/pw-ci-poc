@@ -25,7 +25,7 @@ export namespace jsonPlaceholderRoute {
 			let posts: Post[];
 			try {
 				[users, posts] = await Promise.all([
-					user.getUserLists(true),
+					user.getUsers(true),
 					JPH.getAllPosts(),
 				]);
 			} catch (e) {
@@ -71,7 +71,7 @@ export namespace jsonPlaceholderRoute {
 				let pst: Post;
 
 				[users, pst] = await Promise.all([
-					user.getUserLists(true),
+					user.getUsers(true),
 					JPH.getPostByPostId(id),
 				]);
 				const userid = users.map((v) => v.id);

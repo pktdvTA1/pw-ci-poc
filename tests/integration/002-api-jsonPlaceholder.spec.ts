@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
-// No POMS, no external import nothing but playwright itself.
+/*
+No POMS, no external import nothing but playwright itself.
+
+No Setup Required
+Use Project of 'api'
+*/
+
 test.use({ baseURL: 'https://jsonplaceholder.typicode.com' });
 
 test.describe('Test API On jsonPlaceHolder', () => {

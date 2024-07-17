@@ -6,7 +6,11 @@ import { jwtDecode } from 'jwt-decode';
  * To put it simple we move beforeEach() to fixture instead
  * So we can customize each setup for each tests individually
  * And also reuse existing fixture if it's suite your test
- */
+
+No Setup Required
+Use Project of 'api'
+*/
+
 test.use({ baseURL: 'https://postman-echo.com' });
 
 test.describe.configure({ mode: 'parallel' });

@@ -3,9 +3,11 @@ import { envConfig } from '~src/configs/env';
 
 /**
  * this is simple test api
- * using local server with nothing being alter
+ * Using local server with nothing being alter
+ * This required project of `setup_DB`
+ * This suite will run under project of `testDB`
  */
-const activeUserList = [1, 2];
+const activeUsers = [1, 2];
 
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 
@@ -19,7 +21,7 @@ test.describe('Local Server With 3rd Party', () => {
 			const body = await res.json();
 
 			const inactiveUsrPost = body.filter(
-				(v) => !activeUserList.includes(v.userId)
+				(v) => !activeUsers.includes(v.userId)
 			);
 
 			await expect(res).toBeOK();

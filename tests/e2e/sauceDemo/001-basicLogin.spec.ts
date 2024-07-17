@@ -2,6 +2,11 @@ import { expect, test } from '@playwright/test';
 import { LoginService } from '~poms/basicLogin.page';
 import { InventoryService } from '~poms/inventory.page';
 
+/**
+ * This required project(setup) of `setup_sauceDemo`
+ * This required project of `sauceDemo`
+ */
+
 let loginPage: LoginService.LoginPage;
 let loginPageAssertions: LoginService.LoginPageAssertions;
 let inventoryAssertion: InventoryService.InventoryAssertion;

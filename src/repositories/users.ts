@@ -4,7 +4,7 @@ export class UserManagement {
 	constructor() {
 		this.prisma = new PrismaClient();
 	}
-	async getUserLists(isActive: true = true) {
+	async getUsers(isActive: true = true) {
 		return await this.prisma.users.findMany({
 			where: {
 				is_active: isActive,

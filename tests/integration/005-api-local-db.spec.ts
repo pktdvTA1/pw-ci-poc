@@ -4,7 +4,11 @@ import { envConfig } from '~src/configs/env';
 simeple style, All in one file
 This required server to be running
 And also required database setup
-*/
+
+This required project of `setup_DB`
+This suite will run under project of `testDB``
+ */
+
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 test.describe.configure({ mode: 'parallel' });
 
