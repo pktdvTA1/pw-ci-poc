@@ -12,15 +12,16 @@ datasource db {
   provider = "postgresql"
   url      = env("PRISMA_DATABASE_URL")
 }
+
 model users {
   id           Int      @id @default(autoincrement())
-  external_id   String
+  external_id  String
   first_name   String
   last_name    String
   email        String
   phone_number String?
-  is_active    Boolean?  @default(true)
-  is_deleted   Boolean?  @default(false)
+  is_active    Boolean? @default(true)
+  is_deleted   Boolean? @default(false)
   created_at   DateTime @default(now())
   created_by   String?
   updated_at   DateTime @default(now())
@@ -63,4 +64,39 @@ model role_permissions {
   permissionId  permissions @relation(fields: [permission_id], references: [id])
 
   @@unique([role_id, permission_id])
+}
+
+// simulate the member from different sources
+model external_members {
+  id          Int      @id @default(autoincrement())
+  firstName   String?
+  lastName    String?
+  nationality String
+  email       String
+  age         Int
+  is_active   Boolean  @default(true)
+  is_delete   Boolean  @default(false)
+  origin      String // source of id e.g. Palace Blade
+  external_id String? // e.g. id of StrokUA
+  created_at  DateTime @default(now())
+
+  @@unique([email])
+}
+
+// our registered members
+model registered_members {
+  id                 Int      @id @default(autoincrement())
+  external_member_id Int
+  firstName          String?
+  lastName           String?
+  nationality        String
+  email              String
+  age                Int
+  is_active          Boolean  @default(true)
+  is_delete          Boolean  @default(false)
+  origin             String // source of id e.g. Palace Blade
+  external_id        String? // e.g. id of StrokUA
+  created_at         DateTime @default(now())
+
+  @@unique([email])
 }
