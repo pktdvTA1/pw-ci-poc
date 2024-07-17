@@ -5,9 +5,13 @@ import { PrismaService } from '~databases/prisma/dbService';
  * Interact with DB (truncate, seeding or querying)
  * And also using the Setup for Global Test Setup (for truncate)
  * The truncate and seeding necessary data
- */
+
+ This required project of `setup_DB`
+ This suite will run under project of `testDB`
+*/
 const prisma = new PrismaService.PrismaManager();
 
+test.describe.configure({ mode: 'parallel' });
 test.describe('Prisma DB and Setup', () => {
 	test('Query All User should return 2', async () => {
 		const data = await prisma.queryAll('users');

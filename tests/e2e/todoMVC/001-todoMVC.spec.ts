@@ -5,7 +5,9 @@ let td: TodoMVCServie.TodoMVCManager;
 let tda: TodoMVCServie.TodoMVCAssertion;
 
 test.describe.configure({ mode: 'parallel' });
-
+/**
+ * This required project of `td`
+ */
 test.describe('Verify UI of homepage.', () => {
 	test.beforeEach(async ({ page }) => {
 		td = new TodoMVCServie.TodoMVCManager(page);

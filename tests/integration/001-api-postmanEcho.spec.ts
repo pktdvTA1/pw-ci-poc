@@ -10,8 +10,11 @@ import { JWTManager } from '~poms/auth';
  * There's no real different between Construct the JWTmanager() outside of describe's BeforeAll
  * Or in the beforeAll itself, because we use parallel mode,
  * So this file will run as much as spawned workers anyway
- */
 
+No Setup Required
+Use Project of 'api'
+
+ */
 let echo: PostmanEchoManager;
 const jwt = new JWTManager({
 	firstName: 'ThisisFirstName',

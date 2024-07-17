@@ -18,12 +18,13 @@ import * as sinon from 'sinon';
  * Con
  * - Painfully hard because we need to find the right function.
  * - Stub with care, We want to test the logic or handler.
- * Not the data returned (cause its a data we provided via stub).
+ * Not the data returned (cause its a data we provided).
  * - It looks very much like Unit Test, yes...
+ * This only required project of `stub`
  */
 
 const getPostStub = sinon.stub(JPHManager.prototype, 'getAllPosts');
-const getUserListStub = sinon.stub(UserManagement.prototype, 'getUserLists');
+const getUserstub = sinon.stub(UserManagement.prototype, 'getUsers');
 const getUserByIdStub = sinon.stub(UserManagement.prototype, 'getUserById');
 const postCreatePostStub = sinon.stub(
 	JPHManager.prototype,
@@ -57,11 +58,11 @@ test.describe('Stub with sinon', () => {
 		// becaise no server nor db is running .restore() will cause the failure
 		// test.afterEach(async () => {
 		// 	getPostStub.restore();
-		// 	getUserListStub.restore();
+		// 	getUserstub.restore();
 		// });
 
 		test('When user is active should return post data', async ({ request }) => {
-			getUserListStub.resolves(defaultUser as never);
+			getUserstub.resolves(defaultUser as never);
 			getPostStub.resolves(defaultPost);
 
 			const res = await request.get('/api/jph/posts');
@@ -72,7 +73,7 @@ test.describe('Stub with sinon', () => {
 		});
 
 		test('When has no users should return empty array', async ({ request }) => {
-			getUserListStub.resolves([]);
+			getUserstub.resolves([]);
 			getPostStub.resolves(defaultPost);
 
 			const res = await request.get('/api/jph/posts');
@@ -87,7 +88,7 @@ test.describe('Stub with sinon', () => {
 		}) => {
 			const u = [...defaultUser];
 			u[0].is_deleted = true;
-			getUserListStub.resolves(u as never);
+			getUserstub.resolves(u as never);
 			getPostStub.resolves(defaultPost);
 
 			const res = await request.get('/api/jph/posts');
@@ -100,7 +101,7 @@ test.describe('Stub with sinon', () => {
 		test('When there is no post, should return empty array', async ({
 			request,
 		}) => {
-			getUserListStub.resolves(defaultUser as never);
+			getUserstub.resolves(defaultUser as never);
 			getPostStub.resolves([]);
 
 			const res = await request.get('/api/jph/posts');
@@ -115,7 +116,7 @@ test.describe('Stub with sinon', () => {
 		}) => {
 			const u = [{ ...defaultUser[0] }];
 			u[0].id = 999;
-			getUserListStub.resolves(u as never);
+			getUserstub.resolves(u as never);
 			getPostStub.resolves([]);
 
 			const res = await request.get('/api/jph/posts');
