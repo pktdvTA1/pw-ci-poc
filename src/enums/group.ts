@@ -26,4 +26,9 @@ export namespace EcoSystem {
 		TH = 'TH',
 		MARS = 'Mars',
 	}
+	export enum Source {
+		EMAIL = 'EMAIL',
+		PHONE = 'PHONE',
+		EXTERNAL = 'EXTERNAL',
+	}
 }
