@@ -26,4 +26,13 @@ export namespace EcoSystem {
 		TH = 'TH',
 		MARS = 'Mars',
 	}
+	export enum Source {
+		EMAIL = 'EMAIL',
+		PHONE = 'PHONE',
+		EXTERNAL = 'EXTERNAL',
+	}
+	export type Origin = `${
+		| EcoSystem.GroupName
+		| EcoSystem.Inner
+		| EcoSystem.Aliaz}`;
 }
