@@ -5,7 +5,7 @@ import { StatusCode } from '~src/enums/statuCode';
 import { ExtMemberHelper } from '~src/features/extMember';
 import { MemberManager } from '~src/repositories/members';
 import { EcoSystem } from '~src/enums/group';
-
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 export namespace memberRoute {
 	// create member different source, not via current app itself so we need source to handle error
 	const memberRepository = new MemberManager();
@@ -82,9 +82,19 @@ export namespace memberRoute {
 					const register = await memberRepository.insertIntoRegisterMember(
 						member
 					);
+
 					return reply.code(StatusCode.OK_200).send(register);
 				} catch (e) {
-					return reply.code(StatusCode.BAD_REQUEST).send({ msg: e });
+					if (
+						e instanceof PrismaClientKnownRequestError &&
+						e.name === 'NotFoundError'
+					) {
+						return reply
+							.code(StatusCode.NOT_FOUND_404)
+							.send({ msg: 'External Member Not Found' });
+					} else {
+						return reply.code(StatusCode.BAD_REQUEST).send({ msg: e });
+					}
 				}
 			}
 		);
