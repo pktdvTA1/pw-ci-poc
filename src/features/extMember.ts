@@ -23,10 +23,11 @@ export namespace ExtMemberHelper {
 		age: number;
 		is_active: boolean;
 		is_delete: boolean;
-		phoneNumber: string;
+		phoneNumber?: string | null;
 		created_at: Date;
 		origin: string;
 		external_id: string | null;
+		identity_number: number;
 	}
 
 	export const criteria: Criteria[] = [
