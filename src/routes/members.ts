@@ -2,7 +2,7 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { memberSchema } from '~src/schema/members';
 // import type { EcoSystem } from '~src/enums/group';
 import { StatusCode } from '~src/enums/statuCode';
-import { MemberHelper } from '~src/features/member';
+import { ExtMemberHelper } from '~src/features/extMember';
 import { MemberManager } from '~src/repositories/members';
 import { EcoSystem } from '~src/enums/group';
 
@@ -18,30 +18,30 @@ export namespace memberRoute {
 			},
 			async (
 				request: FastifyRequest<{
-					Body: MemberHelper.GetMember;
+					Body: ExtMemberHelper.GetExtMember;
 				}>,
 				reply: FastifyReply
 			) => {
 				console.log('request.body', request.body);
-				const { email, phoneNumber, origin } = request.body;
+				const { email, phoneNumber, external_id, origin } = request.body;
 				if (email === null && phoneNumber === null) {
 					return reply.code(StatusCode.BAD_REQUEST).send({
 						msg: 'Email or Phone are required',
 					});
 				}
-				const criteria = MemberHelper.getCriteria(origin);
+				const criteria = ExtMemberHelper.getCriteria(origin);
 				if (!criteria) {
 					return reply.code(StatusCode.BAD_REQUEST).send({
 						msg: `Origin of '${origin}' is not support`,
 					});
 				}
-				let member;
+				let member: ExtMemberHelper.ExtMember | null = null;
 				try {
 					if (
 						email &&
 						criteria.accepted_source.includes(EcoSystem.Source.EMAIL)
 					) {
-						member = await memberRepository.getMember({
+						member = await memberRepository.getExtMember({
 							email: email,
 							origin: origin,
 						});
@@ -49,8 +49,16 @@ export namespace memberRoute {
 						phoneNumber &&
 						criteria.accepted_source.includes(EcoSystem.Source.PHONE)
 					) {
-						member = await memberRepository.getMember({
+						member = await memberRepository.getExtMember({
 							phoneNumber: phoneNumber,
+							origin: origin,
+						});
+					} else if (
+						external_id &&
+						criteria.accepted_source.includes(EcoSystem.Source.EXTERNAL)
+					) {
+						member = await memberRepository.getExtMember({
+							external_id: external_id,
 							origin: origin,
 						});
 					}
@@ -71,7 +79,10 @@ export namespace memberRoute {
 							msg: 'Nationality criteria is not met',
 						});
 					}
-					return reply.code(StatusCode.OK_200).send(member);
+					const register = await memberRepository.insertIntoRegisterMember(
+						member
+					);
+					return reply.code(StatusCode.OK_200).send(register);
 				} catch (e) {
 					return reply.code(StatusCode.BAD_REQUEST).send({ msg: e });
 				}

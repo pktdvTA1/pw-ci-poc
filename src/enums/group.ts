@@ -31,4 +31,8 @@ export namespace EcoSystem {
 		PHONE = 'PHONE',
 		EXTERNAL = 'EXTERNAL',
 	}
+	export type Origin = `${
+		| EcoSystem.GroupName
+		| EcoSystem.Inner
+		| EcoSystem.Aliaz}`;
 }
