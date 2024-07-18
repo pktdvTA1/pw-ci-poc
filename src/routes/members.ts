@@ -22,7 +22,6 @@ export namespace memberRoute {
 				}>,
 				reply: FastifyReply
 			) => {
-				console.log('request.body', request.body);
 				const { email, phoneNumber, external_id, origin } = request.body;
 				if (email === null && phoneNumber === null) {
 					return reply.code(StatusCode.BAD_REQUEST).send({
