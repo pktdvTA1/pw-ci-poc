@@ -2,7 +2,7 @@ export namespace EcoSystem {
 	export enum BizType {
 		GROUP = 'Group',
 		INNER = 'Inner',
-		COBIZ = 'Cobiz',
+		Aliaz = 'Aliaz',
 		EXTERNALBIZ = 'ExternalBiz',
 	}
 	export enum GroupName {
@@ -18,7 +18,7 @@ export namespace EcoSystem {
 		COMMITMAN = 'CommitMan',
 		XCALIBER = 'xCaliber',
 	}
-	export enum CoBiz {
+	export enum Aliaz {
 		SE7ENT = 'Se7eNT',
 		EI8HT = 'Ei8ht',
 	}
