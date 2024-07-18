@@ -1,4 +1,4 @@
-import type { Prisma, PrismaClient } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 export type PrismaModelNames = Prisma.ModelName;
 
@@ -10,4 +10,6 @@ export type PrismaModelDataMapper = {
 	roles: Prisma.rolesCreateManyInput;
 	permissions: Prisma.permissionsCreateManyInput;
 	role_permissions: Prisma.role_permissionsCreateManyInput;
+	external_members: Prisma.external_membersCreateManyInput;
+	registered_members: Prisma.registered_membersCreateManyInput;
 };
