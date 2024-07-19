@@ -9,6 +9,10 @@ export namespace memberSchema {
 					type: 'string',
 					nullable: true,
 				},
+				external_id: {
+					type: 'string',
+					nullable: true,
+				},
 			},
 		},
 	};

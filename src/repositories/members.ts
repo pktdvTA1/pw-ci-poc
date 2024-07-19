@@ -29,6 +29,7 @@ export class MemberManager {
 				age: data.age,
 				origin: data.origin,
 				phoneNumber: data.phoneNumber,
+				identity_number: data.identity_number,
 			},
 		});
 	}
