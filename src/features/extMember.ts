@@ -26,8 +26,10 @@ export namespace ExtMemberHelper {
 		phoneNumber?: string | null;
 		created_at: Date;
 		origin: string;
-		external_id: string | null;
+		external_id?: string | null;
 		identity_number: number;
+		passport_number: string | null;
+		passport_expiry_date: Date | null;
 	}
 
 	export const criteria: Criteria[] = [
