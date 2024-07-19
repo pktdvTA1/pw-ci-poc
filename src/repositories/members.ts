@@ -30,6 +30,8 @@ export class MemberManager {
 				origin: data.origin,
 				phoneNumber: data.phoneNumber,
 				identity_number: data.identity_number,
+				passport_number: data.passport_number,
+				passport_expiry_date: data.passport_expiry_date,
 			},
 		});
 	}
