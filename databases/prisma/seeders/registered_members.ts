@@ -11,6 +11,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 2, // Age = 18
@@ -24,6 +27,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 3, // Age > 18
@@ -37,6 +43,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 4, // Not active, not delete
@@ -50,6 +59,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: false,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 5, // Not active, deleted
@@ -63,6 +75,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: true,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 6, // Active, not delete
@@ -76,6 +91,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 7, // Active, deleted
@@ -89,6 +107,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: true,
 		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 8, // Age < 20
@@ -102,6 +123,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 9, // Age = 20
@@ -115,6 +139,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 10, // Age > 20
@@ -128,6 +155,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 11, // Not active, not delete
@@ -141,6 +171,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: false,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 12, // Not active, deleted
@@ -154,6 +187,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: true,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 13, // Active, not delete
@@ -167,6 +203,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 14, // Active, deleted
@@ -180,6 +219,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: true,
 		origin: 'Palace Blade International',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 15, // Age < 20
@@ -193,6 +235,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 16, // Age = 20
@@ -206,6 +251,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 17, // Age > 20
@@ -219,6 +267,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 18, // Not active, not delete
@@ -232,6 +283,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: false,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 19, // Not active, deleted
@@ -245,6 +299,9 @@ export const registered_members = [
 		is_active: false,
 		is_delete: true,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 20, // Active, not delete
@@ -258,6 +315,9 @@ export const registered_members = [
 		is_active: true,
 		is_delete: false,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
 		id: 21, // Active, deleted
@@ -271,5 +331,8 @@ export const registered_members = [
 		is_active: true,
 		is_delete: true,
 		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 ];
