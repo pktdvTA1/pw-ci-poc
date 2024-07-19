@@ -18,7 +18,7 @@ test.describe('Loyalty Member Management', () => {
 			});
 			console.log('res: ', res);
 
-			const body = await res.json();
+			// const body = await res.json();
 			// await expect(res).toBeOK();
 		});
 
