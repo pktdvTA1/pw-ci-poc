@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { ExtMemberHelper } from '../features/extMember';
+import { MemberHelper } from '~src/features/member';
 
 export class MemberManager {
 	prisma: PrismaClient;
@@ -18,6 +19,16 @@ export class MemberManager {
 			},
 		});
 	}
+
+	async getMemberById(query: number) {
+		return this.prisma.registered_members.findUniqueOrThrow({
+			where: {
+				id: query,
+				is_delete: false,
+			},
+		});
+	}
+
 	async insertIntoRegisterMember(data: ExtMemberHelper.ExtMember) {
 		return this.prisma.registered_members.create({
 			data: {
@@ -32,6 +43,24 @@ export class MemberManager {
 				identity_number: data.identity_number,
 				passport_number: data.passport_number,
 				passport_expiry_date: data.passport_expiry_date,
+			},
+		});
+	}
+
+	async updateMember(memberId: number, data: MemberHelper.UpdateMember) {
+		return this.prisma.registered_members.update({
+			where: {
+				id: memberId,
+			},
+			data: {
+				firstName: data.firstName,
+				lastName: data.lastName,
+				nationality: data.nationality,
+				age: data.age,
+				is_active: data.isActive,
+				phoneNumber: data.phoneNumber,
+				passport_number: data.passportNumber,
+				passport_expiry_date: data.passportExpiryDate,
 			},
 		});
 	}
