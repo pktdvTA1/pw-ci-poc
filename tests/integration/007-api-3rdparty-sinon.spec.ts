@@ -212,7 +212,7 @@ test.describe('Stub with sinon', () => {
 			);
 		});
 
-		test('When JPH returns boolean instead of string, should be able to handle as normal string.', async ({
+		test('When JPH returns boolean instead of string, should be failed due to scehama check.', async ({
 			request,
 		}) => {
 			const u = { ...defaultUser[0] };
@@ -232,12 +232,13 @@ test.describe('Stub with sinon', () => {
 				data: post,
 			});
 			const body = await res.json();
-
-			await expect(res).toBeOK();
-			expect(body).toHaveProperty(
-				'detail',
-				`User Id of ${u.id} has created new post with ${post.title} and ${post.body}.`
-			);
+			expect(res.status()).toBe(400);
+			expect(body).toStrictEqual({
+				statusCode: 400,
+				code: 'FST_ERR_VALIDATION',
+				error: 'Bad Request',
+				message: 'body/title must be string',
+			});
 		});
 		test('When JPH returns undefined properties.', async ({ request }) => {
 			const u = { ...defaultUser[0] };
