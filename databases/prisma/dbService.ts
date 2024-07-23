@@ -21,10 +21,16 @@ export namespace PrismaService {
 				throw new Error(`Medle ${table} not found`);
 			}
 			try {
-				await model.createMany({
+				const inserted = await model.createManyAndReturn({
 					data: data,
 					skipDuplicates: true,
 				});
+				if (inserted[0]['id']) {
+					const sorted = inserted.sort((a: any, b: any) => b.id - a.id);
+					const tableSeqName = `${table}_id_seq`;
+					await this.prisma
+						.$queryRaw`SELECT setval(${tableSeqName}, ${sorted[0].id}, true);`;
+				}
 			} catch (e) {
 				throw new Error(`Unable to insert into table ${table} due to > ${e}`);
 			}
