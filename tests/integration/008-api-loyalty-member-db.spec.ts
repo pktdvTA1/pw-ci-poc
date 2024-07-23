@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { envConfig } from '~src/configs/env';
-import exp = require('constants');
 
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 
@@ -101,7 +100,7 @@ test.describe('Loyalty Member Management', () => {
 			expect(body.msg).toMatch(originMessagePattern);
 		});
 
-		test('Should return error message when email and phone number is missing', async ({
+		test('Should return error message when email and phone number is empty string', async ({
 			request,
 		}) => {
 			const res = await request.post('api/member', {
@@ -117,6 +116,22 @@ test.describe('Loyalty Member Management', () => {
 			expect(body.msg).toBe(
 				'Origin and Source is not matched. Email or Phone Or External ID you provided may not met the aceeptance sources'
 			);
+		});
+
+		test('Should return required message when email and phone number is null', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: null,
+					phoneNumber: null,
+					origin: 'Palace Blade',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(400);
+			expect(body.msg).toBe('Email or Phone are required');
 		});
 	});
 });
