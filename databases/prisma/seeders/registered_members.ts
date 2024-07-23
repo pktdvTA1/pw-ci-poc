@@ -50,10 +50,10 @@ export const registered_members = [
 	{
 		id: 4, // Not active, not delete
 		external_member_id: 4,
-		firstName: 'Suriya',
-		lastName: 'Metharom',
+		firstName: 'Orawan',
+		lastName: 'Hongkaew',
 		nationality: 'Thai',
-		email: 'suriya@gmail.com',
+		email: 'orawan.h@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
 		is_active: false,
@@ -66,10 +66,10 @@ export const registered_members = [
 	{
 		id: 5, // Not active, deleted
 		external_member_id: 5,
-		firstName: 'Arthit',
-		lastName: 'Wattana',
+		firstName: 'Patcha',
+		lastName: 'Hongkaew',
 		nationality: 'Thai',
-		email: 'art.w@gmail.com',
+		email: 'patcha.h@gmail.com',
 		phoneNumber: '0812345679',
 		age: 20,
 		is_active: false,
@@ -82,10 +82,10 @@ export const registered_members = [
 	{
 		id: 6, // Active, not delete
 		external_member_id: 6,
-		firstName: 'Somchai',
-		lastName: 'Metharom',
+		firstName: 'Terathip',
+		lastName: 'Kongdee',
 		nationality: 'Thai',
-		email: 'somchai.m@gmail.com',
+		email: 'terathip.k@gmail.com',
 		phoneNumber: '0812345679',
 		age: 22,
 		is_active: true,
