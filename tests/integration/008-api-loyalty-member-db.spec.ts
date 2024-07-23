@@ -74,7 +74,6 @@ test.describe('Loyalty Member Management', () => {
 			});
 
 			const body = await res.json();
-			console.log('body: ', body);
 
 			expect(body.result).toBe('FAIL');
 			expect(body.msg).toBe('Nationality criteria is not met');
