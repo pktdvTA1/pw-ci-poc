@@ -21,7 +21,7 @@ test.describe('Loyalty Member Management', () => {
 			await expect(res).toBeOK();
 			expect(body.firstName).toBe('Pipat');
 			expect(body.lastName).toBe('Kaewsakulchai');
-			expect(body.nationality).toBe('Thai');
+			expect(body.nationality).toBe('TH');
 			expect(body.email).toBe('pipat.k@gmail.com');
 			expect(body.age).toBe(18);
 			expect(body.origin).toBe('Palace Blade');
