@@ -72,7 +72,11 @@ export namespace memberRoute {
 							msg: 'Age criteria is not met',
 						});
 					}
-					if (!criteria.nationality.includes(member.nationality as any)) {
+					if (
+						!criteria.nationality.includes(
+							member.nationality as EcoSystem.Nationality
+						)
+					) {
 						return reply.code(StatusCode.OK_200).send({
 							result: 'FAIL',
 							msg: 'Nationality criteria is not met',
