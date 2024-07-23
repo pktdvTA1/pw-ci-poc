@@ -3,7 +3,7 @@ export const external_members = [
 		id: 1, // Age < 18
 		firstName: 'Prinnada',
 		lastName: 'Comewinit',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'prinnada.c@gmail.com',
 		phoneNumber: '0812345678',
 		age: 16,
@@ -19,7 +19,7 @@ export const external_members = [
 		id: 2, // Age = 18
 		firstName: 'Pipat',
 		lastName: 'Kaewsakulchai',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'pipat.k@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
@@ -35,7 +35,7 @@ export const external_members = [
 		id: 3, // Age > 18
 		firstName: 'NeungZ',
 		lastName: 'Kawaii',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'neungz.k@gmail.com',
 		phoneNumber: '0812345679',
 		age: 30,
@@ -48,10 +48,26 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 4, // Not active, not delete
+		id: 4, // Nationality UNKNOWN
+		firstName: 'JJ',
+		lastName: 'Zhu',
+		nationality: 'UNKNOWN',
+		email: 'jjzhu@gmail.com',
+		phoneNumber: '0812345679',
+		age: 24,
+		is_active: true,
+		is_delete: false,
+		origin: 'Palace Blade',
+		external_id: 'a001',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
+	},
+	{
+		id: 5, // Not active, not delete
 		firstName: 'Suriya',
 		lastName: 'Metharom',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'suriya@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
@@ -64,10 +80,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 5, // Not active, deleted
+		id: 6, // Not active, deleted
 		firstName: 'Arthit',
 		lastName: 'Wattana',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'art.w@gmail.com',
 		phoneNumber: '0812345679',
 		age: 20,
@@ -80,10 +96,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 6, // Active, not delete
+		id: 7, // Active, not delete
 		firstName: 'Somchai',
 		lastName: 'Metharom',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'somchai.m@gmail.com',
 		phoneNumber: '0812345679',
 		age: 22,
@@ -96,10 +112,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 7, // Active, deleted
+		id: 8, // Active, deleted
 		firstName: 'Kulap',
 		lastName: 'Bunnag',
-		nationality: 'Thai',
+		nationality: 'TH',
 		email: 'kulap.b@gmail.com',
 		phoneNumber: '0812345679',
 		age: 24,
@@ -112,10 +128,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 8, // Age < 20
+		id: 9, // Age < 20
 		firstName: 'Ming',
 		lastName: 'Wei',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'mingming.w@gmail.com',
 		phoneNumber: '0812345679',
 		age: 16,
@@ -128,10 +144,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 9, // Age = 20
+		id: 10, // Age = 20
 		firstName: 'Yang',
 		lastName: 'Yu',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'yuyuyang.y@gmail.com',
 		phoneNumber: '0812345679',
 		age: 20,
@@ -144,10 +160,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 10, // Age > 20
+		id: 11, // Age > 20
 		firstName: 'Xun',
 		lastName: 'Xu',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'xunxu@gmail.com',
 		phoneNumber: '0812345679',
 		age: 30,
@@ -160,10 +176,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 11, // Not active, not delete
+		id: 12, // Not active, not delete
 		firstName: 'Hua',
 		lastName: 'Xu',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'huaxu@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
@@ -176,10 +192,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 12, // Not active, deleted
+		id: 13, // Not active, deleted
 		firstName: 'Heng',
 		lastName: 'Lu',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'luheng@gmail.com',
 		phoneNumber: '0812345679',
 		age: 20,
@@ -192,10 +208,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 13, // Active, not delete
+		id: 14, // Active, not delete
 		firstName: 'Tao',
 		lastName: 'Xiao',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'xiaotao@gmail.com',
 		phoneNumber: '0812345679',
 		age: 22,
@@ -208,10 +224,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 14, // Active, deleted
+		id: 15, // Active, deleted
 		firstName: 'Long',
 		lastName: 'Chu',
-		nationality: 'Chinese',
+		nationality: 'Mars',
 		email: 'longlong.c@gmail.com',
 		phoneNumber: '0812345679',
 		age: 24,
@@ -224,7 +240,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 15, // Age < 20
+		id: 16, // Age < 20
 		firstName: 'Tiana',
 		lastName: 'Robb',
 		nationality: 'French',
@@ -240,7 +256,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 16, // Age = 20
+		id: 17, // Age = 20
 		firstName: 'Severina',
 		lastName: 'Scavo',
 		nationality: 'French',
@@ -256,7 +272,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 17, // Age > 20
+		id: 18, // Age > 20
 		firstName: 'Roseline',
 		lastName: 'Guillot',
 		nationality: 'French',
@@ -272,7 +288,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 18, // Not active, not delete
+		id: 19, // Not active, not delete
 		firstName: 'Sylvain',
 		lastName: 'Garnier',
 		nationality: 'French',
@@ -288,7 +304,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 19, // Not active, deleted
+		id: 20, // Not active, deleted
 		firstName: 'Betania',
 		lastName: 'Acosta',
 		nationality: 'French',
@@ -304,7 +320,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 20, // Active, not delete
+		id: 21, // Active, not delete
 		firstName: 'Cristopher',
 		lastName: 'Aguado',
 		nationality: 'French',
@@ -320,7 +336,7 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 21, // Active, deleted
+		id: 22, // Active, deleted
 		firstName: 'Lilia',
 		lastName: 'Rojasu',
 		nationality: 'French',

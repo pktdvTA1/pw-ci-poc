@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { envConfig } from '~src/configs/env';
+import exp = require('constants');
 
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 
@@ -16,10 +17,16 @@ test.describe('Loyalty Member Management', () => {
 					origin: 'Palace Blade',
 				},
 			});
-			console.log('res: ', res);
+			const body = await res.json();
 
-			// const body = await res.json();
-			// await expect(res).toBeOK();
+			await expect(res).toBeOK();
+			expect(body.firstName).toBe('Pipat');
+			expect(body.lastName).toBe('Kaewsakulchai');
+			expect(body.nationality).toBe('Thai');
+			expect(body.email).toBe('pipat.k@gmail.com');
+			expect(body.age).toBe(18);
+			expect(body.origin).toBe('Palace Blade');
+			expect(body.is_active).toBe(true);
 		});
 
 		test('Should return member not found when creating a user with invalid information', async ({
@@ -49,13 +56,29 @@ test.describe('Loyalty Member Management', () => {
 					origin: 'Palace Blade',
 				},
 			});
-			console.log('res: ', res);
+
+			const body = await res.json();
+
+			expect(body.result).toBe('FAIL');
+			expect(body.msg).toBe('Age criteria is not met');
+		});
+
+		test('Should return error message when nationality doesnt meet criteria', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'jjzhu@gmail.com',
+					phoneNumber: '0123456789',
+					origin: 'Palace Blade',
+				},
+			});
 
 			const body = await res.json();
 			console.log('body: ', body);
 
 			expect(body.result).toBe('FAIL');
-			expect(body.msg).toBe('Age criteria is not met');
+			expect(body.msg).toBe('Nationality criteria is not met');
 		});
 
 		test('Should return error message when origin is not matched', async ({
@@ -95,6 +118,5 @@ test.describe('Loyalty Member Management', () => {
 				'Origin and Source is not matched. Email or Phone Or External ID you provided may not met the aceeptance sources'
 			);
 		});
-		//TODO: implement more cases
 	});
 });

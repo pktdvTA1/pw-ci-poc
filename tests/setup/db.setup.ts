@@ -3,7 +3,6 @@ import { PrismaService } from '~databases/prisma/dbService';
 import {
 	external_members,
 	permissions,
-	registered_members,
 	role_permissions,
 	roles,
 	users,
@@ -30,6 +29,5 @@ setup('Setup Common Data', async () => {
 	]);
 	await Promise.all([
 		prisma.insertIntoTable('external_members', external_members),
-		prisma.insertIntoTable('registered_members', registered_members),
 	]);
 });
