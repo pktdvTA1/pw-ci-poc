@@ -5,7 +5,9 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { EcoSystem } from '~src/enums/group';
 import { StatusCode } from '~src/enums/statuCode';
 import { ExtMemberHelper } from '~src/features/extMember';
+import { MemberHelper } from '~src/features/member';
 import { MemberManager } from '~src/repositories/members';
+import { getYear } from 'date-fns';
 export namespace memberRoute {
 	// create member different source, not via current app itself so we need source to handle error
 	const memberRepository = new MemberManager();
@@ -101,7 +103,102 @@ export namespace memberRoute {
 				}
 			}
 		);
+		app.patch(
+			'/api/member/:id',
+			{
+				schema: {
+					params: memberSchema.UpdateMemberById.params,
+					body: memberSchema.UpdateMemberById.body,
+				},
+			},
+			async (
+				request: FastifyRequest<{
+					Params: { id: string };
+					Body: MemberHelper.UpdateMember;
+				}>,
+				reply: FastifyReply
+			) => {
+				const { id } = request.params;
+				const {
+					firstName,
+					lastName,
+					nationality,
+					age,
+					phoneNumber,
+					passportNumber,
+					passportExpiryDate,
+				} = request.body;
+
+				let member;
+				try {
+					member = await memberRepository.getMemberById(parseInt(id));
+				} catch (e) {
+					return reply
+						.code(StatusCode.NOT_FOUND_404)
+						.send({ result: 'FAIL', msg: 'Registered Member is not found.' });
+				}
+				// validation part
+
+				if (
+					(firstName && firstName?.trim().split('').length > 50) ||
+					(lastName && lastName?.trim().split('').length > 50)
+				) {
+					return reply.code(StatusCode.BAD_REQUEST).send({
+						result: 'FAIL',
+						msg: 'FirstName or Lastname is longer than 50',
+					});
+				}
+				if (
+					nationality &&
+					!Object.values(EcoSystem.Nationality).includes(
+						nationality as EcoSystem.Nationality
+					)
+				) {
+					return reply.code(StatusCode.BAD_REQUEST).send({
+						result: 'FAIL',
+						msg: 'Nationality is not support',
+					});
+				}
+				if (age && age <= 5) {
+					return reply.code(StatusCode.BAD_REQUEST).send({
+						result: 'FAIL',
+						msg: 'Age cant be lower than 5',
+					});
+				}
+				if (phoneNumber && phoneNumber === member.phoneNumber) {
+					return reply.code(StatusCode.BAD_REQUEST).send({
+						result: 'FAIL',
+						msg: 'PhoneNumber should not be the same',
+					});
+				}
+				if (passportNumber || passportExpiryDate) {
+					if (!member.passport_number || !member.passport_expiry_date) {
+						return reply.code(StatusCode.BAD_REQUEST).send({
+							result: 'FAIL',
+							msg: 'No Passport number or Expiry found, Please register passport first.',
+						});
+					}
+					const ppExpiry = getYear(passportExpiryDate as Date);
+					const currentYear = getYear(new Date());
+					if (ppExpiry <= currentYear) {
+						return reply.code(StatusCode.BAD_REQUEST).send({
+							result: 'FAIL',
+							msg: 'Passport Expiry cant be lower or equal to current year.',
+						});
+					}
+				}
+				try {
+					const updateResult = await memberRepository.updateMember(
+						member.id,
+						request.body
+					);
+					return reply.code(StatusCode.OK_200).send(updateResult);
+				} catch (e) {
+					return reply
+						.code(StatusCode.BAD_REQUEST)
+						.send({ result: 'FAIL', msg: e });
+				}
+			}
+		);
 	};
 }
-// app.post('/api/member', {
-//             schema: memberSchema.createMember,
