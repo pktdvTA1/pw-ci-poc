@@ -48,10 +48,10 @@ export const external_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 4, // Nationality UNKNOWN
+		id: 4, // Nationality Mars
 		firstName: 'JJ',
 		lastName: 'Zhu',
-		nationality: 'UNKNOWN',
+		nationality: 'Mars',
 		email: 'jjzhu@gmail.com',
 		phoneNumber: '0812345679',
 		age: 24,
