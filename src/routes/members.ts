@@ -1,11 +1,11 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { memberSchema } from '~src/schema/members';
 // import type { EcoSystem } from '~src/enums/group';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { EcoSystem } from '~src/enums/group';
 import { StatusCode } from '~src/enums/statuCode';
 import { ExtMemberHelper } from '~src/features/extMember';
 import { MemberManager } from '~src/repositories/members';
-import { EcoSystem } from '~src/enums/group';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 export namespace memberRoute {
 	// create member different source, not via current app itself so we need source to handle error
 	const memberRepository = new MemberManager();
@@ -72,7 +72,11 @@ export namespace memberRoute {
 							msg: 'Age criteria is not met',
 						});
 					}
-					if (!member.nationality.includes(member.nationality)) {
+					if (
+						!criteria.nationality.includes(
+							member.nationality as EcoSystem.Nationality
+						)
+					) {
 						return reply.code(StatusCode.OK_200).send({
 							result: 'FAIL',
 							msg: 'Nationality criteria is not met',
