@@ -1,10 +1,14 @@
-import { EcoSystem } from '../enums/group';
-
+import { EcoSystem } from '~src/enums/group';
 export namespace MemberHelper {
-	export interface getExtMember {
-		email?: string;
+	export interface UpdateMember {
+		firstName?: string;
+		lastName?: string;
+		nationality?: `${EcoSystem.Nationality}`;
+		age?: number;
+		isActive?: boolean;
+		isDelete?: boolean;
 		phoneNumber?: string;
-		external_id?: string;
-		origin: EcoSystem.Origin;
+		passportNumber?: string;
+		passportExpiryDate?: Date;
 	}
 }

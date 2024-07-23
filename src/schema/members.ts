@@ -1,7 +1,7 @@
 import type { FastifySchema } from 'fastify';
 export namespace memberSchema {
 	export const createMember: FastifySchema = {
-		params: {
+		body: {
 			type: 'object',
 			properties: {
 				email: { type: 'string', nullable: true },
@@ -12,6 +12,46 @@ export namespace memberSchema {
 				external_id: {
 					type: 'string',
 					nullable: true,
+				},
+			},
+		},
+	};
+	export const UpdateMemberById: FastifySchema = {
+		params: {
+			type: 'object',
+			properties: {
+				id: {
+					type: 'string',
+				},
+			},
+		},
+		body: {
+			type: 'object',
+			additionalProperties: false,
+			properties: {
+				firstName: {
+					type: 'string',
+				},
+				lastName: {
+					type: 'string',
+				},
+				nationality: {
+					type: 'string',
+				},
+				age: {
+					type: 'number',
+				},
+				isActive: {
+					type: 'boolean',
+				},
+				phoneNumber: {
+					type: 'string',
+				},
+				passportNumber: {
+					type: 'string',
+				},
+				passportExpiryDate: {
+					type: 'string',
 				},
 			},
 		},
