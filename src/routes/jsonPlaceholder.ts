@@ -42,9 +42,12 @@ export namespace jsonPlaceholderRoute {
 		// get post by userid may return many posts
 		app.get(
 			'/api/jph/user-posts/:id',
-			{ schema: JPHSchema.getByIndex },
+			{
+				schema: JPHSchema.getByIndex,
+			},
 			async (request: FastifyGetById, reply: FastifyReply) => {
 				const { id } = request.params;
+				console.log('typeof id', typeof id);
 				let usr;
 				let posts: Post[];
 				[usr, posts] = await Promise.all([

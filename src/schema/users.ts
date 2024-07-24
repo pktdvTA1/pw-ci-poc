@@ -15,7 +15,7 @@ export namespace userSchema {
 			nullable: true,
 			properties: {
 				is_active: {
-					type: 'string',
+					type: 'boolean',
 					nullable: true,
 				},
 			},

@@ -22,23 +22,16 @@ export namespace userRoutes {
 			async (
 				request: FastifyRequest<{
 					Querystring: {
-						is_active?: string;
+						is_active?: boolean;
 					};
 				}>,
 				reply: FastifyReply
 			) => {
 				const { is_active } = request.query;
-				/*
-				 * for some reason even if schema was set to boolean, after destructuring
-				 * it returns as string anyway
-				 */
-				const isTrue = true
-					? is_active && is_active.toLowerCase() === 'true'
-					: false;
 				try {
 					const users = await prisma.users.findMany({
 						where: {
-							is_active: isTrue as boolean,
+							is_active: is_active,
 							is_deleted: false,
 						},
 					});
