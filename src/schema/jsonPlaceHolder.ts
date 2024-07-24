@@ -4,7 +4,7 @@ export namespace JPHSchema {
 			type: 'object',
 			properties: {
 				id: {
-					type: 'integer',
+					type: 'number',
 				},
 			},
 		},
@@ -14,7 +14,7 @@ export namespace JPHSchema {
 			type: 'object',
 			properties: {
 				id: {
-					type: 'string',
+					type: 'number',
 				},
 			},
 		},

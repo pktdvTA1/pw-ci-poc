@@ -1,11 +1,10 @@
-import { PrismaClient } from '@prisma/client';
 import { ExtMemberHelper } from '../features/extMember';
 import { MemberHelper } from '~src/features/member';
+import { RepositoryManager } from '.';
 
-export class MemberManager {
-	prisma: PrismaClient;
+export class MemberRepository extends RepositoryManager {
 	constructor() {
-		this.prisma = new PrismaClient();
+		super();
 	}
 	async getExtMember(query: ExtMemberHelper.GetExtMember) {
 		return this.prisma.external_members.findFirstOrThrow({

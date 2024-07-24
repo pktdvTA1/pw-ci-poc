@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
-// import type { Prisma } from '@prisma/client';
+import { RepositoryManager } from '.';
 
-export class PartnerRepository {
-	prisma: PrismaClient;
+export class PartnerRepository extends RepositoryManager {
 	constructor() {
-		this.prisma = new PrismaClient();
+		super();
 	}
 
 	async getPartner() {
