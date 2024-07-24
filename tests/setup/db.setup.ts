@@ -6,6 +6,7 @@ import {
 	role_permissions,
 	roles,
 	users,
+	partners,
 } from '~databases/prisma/seeders/';
 
 setup('Setup Common Data', async () => {
@@ -18,6 +19,7 @@ setup('Setup Common Data', async () => {
 		'users',
 		'external_members',
 		'registered_members',
+		'partners',
 	]);
 	await Promise.all([
 		prisma.insertIntoTable('permissions', permissions),
@@ -29,5 +31,6 @@ setup('Setup Common Data', async () => {
 	]);
 	await Promise.all([
 		prisma.insertIntoTable('external_members', external_members),
+		prisma.insertIntoTable('partners', partners),
 	]);
 });
