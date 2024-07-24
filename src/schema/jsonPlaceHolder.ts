@@ -14,7 +14,7 @@ export namespace JPHSchema {
 			type: 'object',
 			properties: {
 				id: {
-					type: 'string',
+					type: 'number',
 				},
 			},
 		},
