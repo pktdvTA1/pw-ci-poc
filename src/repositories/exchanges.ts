@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { ExchangeHelper } from '~src/features/exchanges';
-export class ExchangeRepository {
-	prisma: PrismaClient;
+import { RepositoryManager } from '.';
+
+export class ExchangeRepository extends RepositoryManager {
 	constructor() {
-		this.prisma = new PrismaClient();
+		super();
 	}
 	async getExchangeConfigurations() {
 		return this.prisma.exchanges.findMany({

@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-export class UserManagement {
+export class UserRepository {
 	prisma: PrismaClient;
 	constructor() {
 		this.prisma = new PrismaClient();

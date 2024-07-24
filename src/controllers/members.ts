@@ -4,11 +4,11 @@ import { EcoSystem } from '~src/enums/group';
 import { StatusCode } from '~src/enums/statuCode';
 import { ExtMemberHelper } from '~src/features/extMember';
 import { MemberHelper } from '~src/features/member';
-import { MemberManager } from '~src/repositories/members';
+import { MemberRepository } from '~src/repositories/members';
 import { getYear } from 'date-fns';
 
 export namespace MemberController {
-	const memberRepository = new MemberManager();
+	const memberRepository = new MemberRepository();
 	export const createMember = async (
 		request: FastifyRequest<{
 			Body: ExtMemberHelper.GetExtMember;
