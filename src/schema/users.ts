@@ -12,10 +12,10 @@ export namespace userSchema {
 	export const filter = {
 		querystring: {
 			type: 'object',
-			properties: {
-				is_active: {
-					type: 'boolean',
-				},
+		},
+		properties: {
+			is_active: {
+				type: 'boolean',
 			},
 		},
 	};

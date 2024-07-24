@@ -35,7 +35,7 @@ test.describe('#Get User List', () => {
 			},
 		});
 		const body = (await res.json()) as any[];
-
+		console.log('body', body);
 		await expect(res).toBeOK();
 		expect(body).toHaveLength(2);
 		expect(body.every((d) => d.is_active === true)).toBeTruthy();

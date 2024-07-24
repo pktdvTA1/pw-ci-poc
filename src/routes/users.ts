@@ -28,13 +28,20 @@ export namespace userRoutes {
 				reply: FastifyReply
 			) => {
 				const { is_active } = request.query;
-				const users = await prisma.users.findMany({
-					where: {
-						is_active: is_active,
-						is_deleted: false,
-					},
-				});
-				return reply.code(StatusCode.OK_200).send(users);
+				console.log('typeof', typeof is_active);
+				try {
+					const users = await prisma.users.findMany({
+						where: {
+							is_active: is_active as boolean,
+							is_deleted: false,
+						},
+					});
+					return reply.code(StatusCode.OK_200).send(users);
+				} catch (e) {
+					return reply.code(StatusCode.BAD_REQUEST).send({
+						msg: e,
+					});
+				}
 			}
 		);
 
