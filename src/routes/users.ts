@@ -30,7 +30,6 @@ export namespace userRoutes {
 				const { is_active } = request.query;
 				const users = await prisma.users.findMany({
 					where: {
-						// is_active: is_active.toLowerCase() === 'true' ? true : false
 						is_active: is_active,
 						is_deleted: false,
 					},
