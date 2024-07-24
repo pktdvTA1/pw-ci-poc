@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { JPHManager } from '~src/features/jsonPlaceholder';
-import { UserManagement } from '~src/repositories/users';
+import { UserRepository } from '~src/repositories/users';
 import { envConfig } from '~src/configs/env';
 import { app } from '~src/app';
 import * as sinon from 'sinon';
@@ -24,8 +24,8 @@ import * as sinon from 'sinon';
  */
 
 const getPostStub = sinon.stub(JPHManager.prototype, 'getAllPosts');
-const getUserstub = sinon.stub(UserManagement.prototype, 'getUsers');
-const getUserByIdStub = sinon.stub(UserManagement.prototype, 'getUserById');
+const getUserstub = sinon.stub(UserRepository.prototype, 'getUsers');
+const getUserByIdStub = sinon.stub(UserRepository.prototype, 'getUserById');
 const postCreatePostStub = sinon.stub(
 	JPHManager.prototype,
 	'createNewPostWithUserId'

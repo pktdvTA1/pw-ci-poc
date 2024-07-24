@@ -2,7 +2,7 @@ import { ExtMemberHelper } from '../features/extMember';
 import { MemberHelper } from '~src/features/member';
 import { RepositoryManager } from '.';
 
-export class MemberManager extends RepositoryManager {
+export class MemberRepository extends RepositoryManager {
 	constructor() {
 		super();
 	}

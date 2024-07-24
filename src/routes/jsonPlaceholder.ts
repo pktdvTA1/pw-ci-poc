@@ -1,5 +1,5 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { UserManagement } from '~src/repositories/users';
+import { UserRepository } from '~src/repositories/users';
 import { JPHManager, Post } from '~src/features/jsonPlaceholder';
 import { StatusCode } from '~src/enums/statuCode';
 import { JPHSchema } from '~src/schema/jsonPlaceHolder';
@@ -13,7 +13,7 @@ type FastifyCreatePost = FastifyRequest<{
 	};
 }>;
 export namespace jsonPlaceholderRoute {
-	const user = new UserManagement();
+	const user = new UserRepository();
 	const JPH = new JPHManager();
 	// get post of active users in various style (for now )
 	// to do add filter
