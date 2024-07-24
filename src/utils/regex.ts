@@ -6,4 +6,7 @@ export namespace VerifyRegex {
 	export const verifyLetterNumber = (s: string): Boolean => {
 		return /^[A-Za-z0-9]*$/.test(s);
 	};
+	export const verifyLetterAndDash = (s: string): Boolean => {
+		return /^[A-Za-z-]*$/.test(s);
+	};
 }

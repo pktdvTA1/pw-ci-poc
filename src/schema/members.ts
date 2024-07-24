@@ -27,7 +27,6 @@ export namespace memberSchema {
 		},
 		body: {
 			type: 'object',
-			additionalProperties: false,
 			properties: {
 				firstName: {
 					type: 'string',
