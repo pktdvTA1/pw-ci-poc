@@ -9,5 +9,6 @@ export namespace ExchangeRoute {
 			{ schema: ExchangeSchema.createExchange },
 			ExchangeController.createExchangeConfiguration
 		);
+		app.get('/api/exchanges', ExchangeController.getExchanges);
 	};
 }
