@@ -50,6 +50,7 @@ export class MemberRepository extends RepositoryManager {
 		return this.prisma.registered_members.update({
 			where: {
 				id: memberId,
+				is_delete: false,
 			},
 			data: {
 				firstName: data.firstName,
