@@ -12,11 +12,14 @@ export namespace userSchema {
 	export const filter = {
 		querystring: {
 			type: 'object',
-		},
-		properties: {
-			is_active: {
-				type: 'boolean',
+			nullable: true,
+			properties: {
+				is_active: {
+					type: 'string',
+					nullable: true,
+				},
 			},
+			additionalProperties: false,
 		},
 	};
 	export const updateById = {
