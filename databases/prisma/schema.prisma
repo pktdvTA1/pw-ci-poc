@@ -106,3 +106,32 @@ model registered_members {
   passport_number      String?   @db.VarChar(20)
   passport_expiry_date DateTime?
 }
+
+model partners {
+  id          Int         @id @default(autoincrement())
+  name        String
+  is_acitve   Boolean?    @default(true)
+  is_delete   Boolean?    @default(false)
+  create_date DateTime?   @default(now())
+  update_date DateTime?   @default(now())
+  exchanges   exchanges[]
+}
+
+model exchanges {
+  id                  Int       @id @default(autoincrement())
+  name                String
+  currency_code       String    @db.VarChar(3)
+  partner_id          Int
+  inbound_ratio_them  Decimal   @db.Decimal(4, 2)
+  inbound_ratio_us    Decimal   @db.Decimal(4, 2)
+  outbound_ratio_us   Decimal   @db.Decimal(4, 2)
+  outbound_ratio_them Decimal   @db.Decimal(4, 2)
+  is_active           Boolean?  @default(true)
+  is_delete           Boolean?  @default(false)
+  minimum_amount      Decimal?  @default(0.00) @db.Decimal(10, 2)
+  create_date         DateTime? @default(now())
+  update_date         DateTime? @default(now())
+  partnerId           partners  @relation(fields: [partner_id], references: [id])
+
+  @@unique([name, currency_code])
+}

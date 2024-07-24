@@ -1,5 +1,5 @@
 import { EcoSystem } from '../enums/group';
-
+import { VerifyRegex } from '~src/utils/regex';
 interface Criteria {
 	type: EcoSystem.Origin;
 	age: number;
@@ -103,5 +103,9 @@ export namespace ExtMemberHelper {
 
 	export const getCriteria = (origin: EcoSystem.Origin) => {
 		return criteria.filter((v) => v.type === origin)[0];
+	};
+
+	export const validateFNandLN = (s: string) => {
+		return VerifyRegex.verifyLetterAndDash(s);
 	};
 }

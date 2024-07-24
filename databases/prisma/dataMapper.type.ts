@@ -12,4 +12,6 @@ export type PrismaModelDataMapper = {
 	role_permissions: Prisma.role_permissionsCreateManyInput;
 	external_members: Prisma.external_membersCreateManyInput;
 	registered_members: Prisma.registered_membersCreateManyInput;
+	partners: Prisma.partnersCreateManyInput;
+	exchanges: Prisma.exchangesCreateManyInput;
 };
