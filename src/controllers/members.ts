@@ -121,7 +121,7 @@ export namespace MemberController {
 			(firstName && !ExtMemberHelper.validateFNandLN(firstName)) ||
 			(lastName && !ExtMemberHelper.validateFNandLN(lastName))
 		) {
-			console.log('here in validation of fn');
+			console.log('here in validation of fn/ln');
 			return reply.code(StatusCode.BAD_REQUEST).send({
 				result: 'FAIL',
 				msg: 'FirstName or Lastname format is invalid',
