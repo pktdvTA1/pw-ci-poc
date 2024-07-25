@@ -33,20 +33,6 @@ export namespace ExchangeController {
 		} catch (e) {
 			return e;
 		}
-
-		// validate the name and code if it's already exist
-		const existingExchanges =
-			await exchangeRepository.getExchangeConfigurations();
-		const existingNameAndCode = existingExchanges.map(
-			(v) => v.name.trim() + v.currency_code.trim()
-		);
-		if (existingNameAndCode.includes(name.trim() + currency_code.trim())) {
-			return CustomError.exchangeConfig(
-				reply,
-				'Currency Name and Currency Code, them combined may already exist'
-			);
-		}
-
 		try {
 			const result = await exchangeRepository.createExchangeConfiguration({
 				name: name.trim(),
