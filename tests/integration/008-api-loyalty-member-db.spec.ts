@@ -45,9 +45,7 @@ test.describe('Loyalty Member Management', () => {
 			expect(body.msg).toBe('External Member Not Found');
 		});
 
-		test('Should return error message when age doesnt meet criteria', async ({
-			request,
-		}) => {
+		test('Should return error for a user aged < 18', async ({ request }) => {
 			const res = await request.post('api/member', {
 				data: {
 					email: 'prinnada.c@gmail.com',
@@ -60,6 +58,24 @@ test.describe('Loyalty Member Management', () => {
 
 			expect(body.result).toBe('FAIL');
 			expect(body.msg).toBe('Age criteria is not met');
+		});
+
+		test('Should return success for a valid user aged > 18', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'neungz.k@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade',
+				},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.email).toBe('neungz.k@gmail.com');
+			expect(body.age).toBe(30);
+			expect(body.origin).toBe('Palace Blade');
 		});
 
 		test('Should return error message when nationality doesnt meet criteria', async ({
@@ -131,6 +147,119 @@ test.describe('Loyalty Member Management', () => {
 
 			expect(res.status()).toBe(400);
 			expect(body.msg).toBe('Email or Phone are required');
+		});
+
+		test('Should return error for a user aged < 20', async ({ request }) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'mingming.w@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			expect(body.result).toBe('FAIL');
+			expect(body.msg).toBe('Age criteria is not met');
+		});
+
+		test('Should return success for a valid user aged 20', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'yuyuyang.y@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.email).toBe('yuyuyang.y@gmail.com');
+			expect(body.age).toBe(20);
+			expect(body.origin).toBe('Palace Blade International');
+		});
+
+		test('Should return success for a valid user aged > 20', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'xunxu@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.email).toBe('xunxu@gmail.com');
+			expect(body.age).toBe(30);
+			expect(body.origin).toBe('Palace Blade International');
+		});
+
+		test('Should return error for a inactive user', async ({ request }) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'huaxu@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body.msg).toBe('External Member Not Found');
+		});
+
+		test('Should return error for a inactive user and deleted', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'luheng@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body.msg).toBe('External Member Not Found');
+		});
+
+		test('Should return success for an active user who is not deleted', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'xiaotao@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.email).toBe('xiaotao@gmail.com');
+			expect(body.is_active).toBe(true);
+		});
+
+		test('Should return error for an active user who is deleted', async ({
+			request,
+		}) => {
+			const res = await request.post('api/member', {
+				data: {
+					email: 'longlong.c@gmail.com',
+					phoneNumber: '0812345679',
+					origin: 'Palace Blade International',
+				},
+			});
+			const body = await res.json();
+
+			expect(res.status()).toBe(404);
+			expect(body.msg).toBe('External Member Not Found');
 		});
 	});
 });
