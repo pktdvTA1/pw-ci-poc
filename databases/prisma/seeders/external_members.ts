@@ -66,9 +66,9 @@ export const external_members = [
 	{
 		id: 5, // Not active, not delete
 		firstName: 'Suriya',
-		lastName: 'Metharom',
+		lastName: 'Hongkaew',
 		nationality: 'TH',
-		email: 'suriya@gmail.com',
+		email: 'suriya.h@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
 		is_active: false,
@@ -81,8 +81,8 @@ export const external_members = [
 	},
 	{
 		id: 6, // Not active, deleted
-		firstName: 'Arthit',
-		lastName: 'Wattana',
+		firstName: 'Art',
+		lastName: 'Wutthanasin',
 		nationality: 'TH',
 		email: 'art.w@gmail.com',
 		phoneNumber: '0812345679',
@@ -98,7 +98,7 @@ export const external_members = [
 	{
 		id: 7, // Active, not delete
 		firstName: 'Somchai',
-		lastName: 'Metharom',
+		lastName: 'Meekwamsuk',
 		nationality: 'TH',
 		email: 'somchai.m@gmail.com',
 		phoneNumber: '0812345679',
