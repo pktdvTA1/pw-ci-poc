@@ -45,4 +45,15 @@ export namespace ExchangeSchema {
 			},
 		},
 	};
+	export const updateExchange: FastifySchema = {
+		params: {
+			type: 'object',
+			properties: {
+				id: {
+					type: 'integer',
+				},
+			},
+		},
+		...createExchange,
+	};
 }

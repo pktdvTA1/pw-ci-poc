@@ -1,5 +1,11 @@
 // import type { PrismaT } from '@prisma/client';
 import { Prisma } from '@prisma/client';
+import { PartnerRepository } from '~src/repositories/partners';
+import { ExchangeRepository } from '~src/repositories/exchanges';
+import { FastifyReply } from 'fastify';
+import { CustomError } from '~src/utils/customError';
+import { VerifyRegex } from '~src/utils/regex';
+
 export namespace ExchangeHelper {
 	export interface ExchangeConfigCreation {
 		id?: number;
@@ -36,6 +42,9 @@ export namespace ExchangeHelper {
 		};
 	}
 
+	export interface UpdateExchangeParams {
+		id: number;
+	}
 	export const transformExchangeWithPartnerData = (
 		d: RawExchangeWithpPartnerData[]
 	) => {
@@ -62,5 +71,53 @@ export namespace ExchangeHelper {
 				updateDate: v.update_date,
 			};
 		});
+	};
+
+	export const isPartnerExist = async (
+		reply: FastifyReply,
+		partner_id: number
+	) => {
+		const partnerRepository = new PartnerRepository();
+		const partnerids = (await partnerRepository.getPartner()).map((v) => v.id);
+		if (partner_id && !partnerids.includes(partner_id)) {
+			return CustomError.partnerNotFound(reply);
+		}
+	};
+
+	export const isNameValid = async (reply: FastifyReply, name: string) => {
+		if (!VerifyRegex.verifyLetterNumberSpace(name)) {
+			return CustomError.exchangeConfig(reply, 'Currency Name');
+		}
+	};
+
+	export const isCurrencyCodeValid = async (
+		reply: FastifyReply,
+		currencyCode: string
+	) => {
+		if (
+			!VerifyRegex.verifyLetterNumberSpace(currencyCode) ||
+			currencyCode.length != 3
+		) {
+			return CustomError.exchangeConfig(reply, 'Currency Code');
+		}
+	};
+
+	export const isCurrencyAndCodeExist = async (
+		reply: FastifyReply,
+		name: string,
+		currencyCode: string
+	) => {
+		const exchangeRepository = new ExchangeRepository();
+		const existingExchanges =
+			await exchangeRepository.getExchangeConfigurations();
+		const existingNameAndCode = existingExchanges.map(
+			(v) => v.name.trim() + v.currency_code.trim()
+		);
+		if (existingNameAndCode.includes(name.trim() + currencyCode.trim())) {
+			return CustomError.exchangeConfig(
+				reply,
+				'Currency Name and Currency Code, them combined may already exist'
+			);
+		}
 	};
 }

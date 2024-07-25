@@ -10,5 +10,11 @@ export namespace ExchangeRoute {
 			ExchangeController.createExchangeConfiguration
 		);
 		app.get('/api/exchanges', ExchangeController.getExchanges);
+
+		app.patch(
+			'/api/exchange/:id',
+			{ schema: ExchangeSchema.updateExchange },
+			ExchangeController.updateExchange
+		);
 	};
 }

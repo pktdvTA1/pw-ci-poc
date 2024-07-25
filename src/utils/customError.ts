@@ -13,4 +13,11 @@ export namespace CustomError {
 			msg: 'Partner Not Found',
 		});
 	};
+
+	export const exchangeNotFound = (reply: FastifyReply) => {
+		return reply.code(StatusCode.NOT_FOUND_404).send({
+			result: 'FAIL',
+			msg: 'Exchange Not Found',
+		});
+	};
 }
