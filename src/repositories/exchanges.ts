@@ -7,8 +7,19 @@ export class ExchangeRepository extends RepositoryManager {
 	}
 	async getExchangeConfigurations() {
 		return this.prisma.exchanges.findMany({
+			include: {
+				partnerId: {
+					select: {
+						id: true,
+						name: true,
+					},
+				},
+			},
 			where: {
 				is_delete: false,
+				partnerId: {
+					is_delete: false,
+				},
 			},
 			orderBy: {
 				currency_code: 'asc',

@@ -75,4 +75,14 @@ export namespace ExchangeController {
 			});
 		}
 	};
+
+	export const getExchanges = async (
+		request: FastifyRequest,
+		reply: FastifyReply
+	) => {
+		const exchanges = await exchangeRepository.getExchangeConfigurations();
+		const transformed =
+			ExchangeHelper.transformExchangeWithPartnerData(exchanges);
+		return reply.code(StatusCode.OK_200).send({ data: transformed });
+	};
 }
