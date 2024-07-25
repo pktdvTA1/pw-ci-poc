@@ -3,8 +3,9 @@ import { routes } from './routes';
 import Ajv from 'ajv';
 
 const ajv = new Ajv({
-	removeAdditional: false,
+	removeAdditional: true,
 	useDefaults: true,
+	coerceTypes: true,
 });
 
 const app = Fastify({ logger: true });
