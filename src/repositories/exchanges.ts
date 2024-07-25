@@ -34,4 +34,25 @@ export class ExchangeRepository extends RepositoryManager {
 			data: query,
 		});
 	}
+
+	async updateExchange(
+		query: ExchangeHelper.ExchangeConfigCreation,
+		id: number
+	) {
+		return this.prisma.exchanges.update({
+			data: query,
+			where: {
+				id: id,
+			},
+		});
+	}
+
+	async findById(id: number) {
+		return this.prisma.exchanges.findFirstOrThrow({
+			where: {
+				id: id,
+				is_delete: false,
+			},
+		});
+	}
 }
