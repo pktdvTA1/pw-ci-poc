@@ -2,19 +2,17 @@ import { expect, test } from '@playwright/test';
 import { PrismaService } from '~databases/prisma/dbService';
 import { registered_members } from '~databases/prisma/seeders/';
 import { envConfig } from '~src/configs/env';
+
 test.use({ baseURL: `http://${envConfig.HOST}:${envConfig.PORT}` });
 
-test.describe.configure({ mode: 'parallel' });
+test.describe.configure({ mode: 'default' });
 test.describe('Update Loyalty Member Management', () => {
 	test.beforeAll(async () => {
-		console.log(test.info().workerIndex);
-		if (test.info().workerIndex === 1) {
-			const prisma = new PrismaService.PrismaManager();
-			await prisma.truncateTables(['registered_members']);
-			await Promise.all([
-				prisma.insertIntoTable('registered_members', registered_members),
-			]);
-		}
+		const prisma = new PrismaService.PrismaManager();
+		await prisma.truncateTables(['registered_members']);
+		await Promise.all([
+			prisma.insertIntoTable('registered_members', registered_members),
+		]);
 	});
 	test.describe('#PATCH /member/:id', () => {
 		test('Should return success when updating a member with valid information', async ({
