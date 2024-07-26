@@ -34,6 +34,6 @@ setup('Setup Common Data', async () => {
 	await Promise.all([
 		prisma.insertIntoTable('external_members', external_members),
 		prisma.insertIntoTable('partners', partners),
-		prisma.insertIntoTable('exchanges', exchanges),
 	]);
+	await prisma.insertIntoTable('exchanges', exchanges);
 });
