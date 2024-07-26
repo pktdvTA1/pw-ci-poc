@@ -1,7 +1,15 @@
-export const partners = [
+import type { Prisma } from '@prisma/client';
+import { CompanyType } from '~src/enums/companyType';
+export const partners: Prisma.partnersCreateManyInput[] = [
 	{
 		id: 1,
 		name: 'KFC-Active',
+		title: CompanyType.CO,
+		abbreviation: 'KC1',
+		address: 'somewhere',
+		biz_group: ['a', 'b'],
+		tax_id: 123456780101,
+		x_id: 123456780201,
 		is_active: true,
 		is_delete: false,
 		create_date: new Date(),
@@ -10,6 +18,12 @@ export const partners = [
 	{
 		id: 2,
 		name: 'KFC-Inactive',
+		title: CompanyType.CO,
+		abbreviation: 'KC2',
+		address: 'somewhere',
+		biz_group: ['a', 'b'],
+		tax_id: 123456780102,
+		x_id: 123456780202,
 		is_active: false,
 		is_delete: false,
 		create_date: new Date(),
@@ -18,6 +32,12 @@ export const partners = [
 	{
 		id: 3,
 		name: 'KFC-Active-Delete',
+		title: CompanyType.CO,
+		abbreviation: 'KC3',
+		address: 'somewhere',
+		biz_group: ['a', 'b'],
+		tax_id: 123456780103,
+		x_id: 123456780203,
 		is_active: true,
 		is_delete: true,
 		create_date: new Date(),
@@ -26,6 +46,12 @@ export const partners = [
 	{
 		id: 4,
 		name: 'KFC-Inactive-Delete',
+		title: CompanyType.CO,
+		abbreviation: 'KC4',
+		address: 'somewhere',
+		biz_group: ['a', 'b'],
+		tax_id: 123456780104,
+		x_id: 123456780204,
 		is_active: false,
 		is_delete: true,
 		create_date: new Date(),
