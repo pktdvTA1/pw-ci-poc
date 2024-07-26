@@ -114,9 +114,9 @@ model partners {
   abbreviation String?
   address      String
   biz_group    String[]
-  tax_id       Int         @unique @db.Integer()
-  x_id         Int         @unique @db.Integer()
-  is_acitve    Boolean?    @default(true)
+  tax_id       BigInt      @unique
+  x_id         BigInt      @unique
+  is_active    Boolean?    @default(true)
   is_delete    Boolean?    @default(false)
   create_date  DateTime?   @default(now())
   update_date  DateTime?   @default(now())
