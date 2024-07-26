@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "tsx --watch src/index.ts",
+		"prepush": "husky prepush",
 		"pw:api": "playwright test --project=api",
 		"pw:tdb": "playwright test --project=testDB",
 		"pw:ui": "playwright test --ui",
@@ -13,7 +14,7 @@
 		"eslint:fix": "eslint --fix tests/",
 		"prisma:migration": "prisma migrate dev --name init --schema databases/prisma/schema.prisma",
 		"prisma:gen": "prisma generate --schema databases/prisma/schema.prisma",
-		"prepush": "husky prepush"
+		"prisma:mg": "npm run prisma:migration && npm run prisma:gen"
 	},
 	"keywords": [],
 	"author": "",

@@ -108,13 +108,66 @@ model registered_members {
 }
 
 model partners {
-  id          Int         @id @default(autoincrement())
-  name        String
-  is_active   Boolean?    @default(true)
-  is_delete   Boolean?    @default(false)
-  create_date DateTime?   @default(now())
-  update_date DateTime?   @default(now())
-  exchanges   exchanges[]
+  id           Int         @id @default(autoincrement())
+  title        String?
+  name         String
+  abbreviation String?
+  address      String
+  biz_group    String[]
+  tax_id       Int         @unique @db.Integer()
+  x_id         Int         @unique @db.Integer()
+  is_acitve    Boolean?    @default(true)
+  is_delete    Boolean?    @default(false)
+  create_date  DateTime?   @default(now())
+  update_date  DateTime?   @default(now())
+  exchanges    exchanges[]
+
+  partnerContacts partner_contacts[]
+  branches        branches[]
+  partner_brand   partner_brand[]
+}
+
+model partner_contacts {
+  id          Int     @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  position    String
+  phoneNumber String
+  email       String
+  is_active   Boolean @default(true)
+
+  partner_id Int?
+  partners   partners? @relation(fields: [partner_id], references: [id])
+}
+
+model branches {
+  id            Int             @id @default(autoincrement())
+  name          String
+  partnerId     Int?
+  status        String
+  lat           Decimal         @db.Decimal(4, 4)
+  long          Decimal         @db.Decimal(4, 4)
+  partners      partners?       @relation(fields: [partnerId], references: [id])
+  partner_brand partner_brand[]
+}
+
+model brands {
+  id            Int             @id @default(autoincrement())
+  name          String
+  categories    String[]
+  status        String
+  partner_brand partner_brand[]
+}
+
+model partner_brand {
+  partner_id Int
+  brand_id   Int
+  branch_id  Int
+  partnerId  partners  @relation(fields: [partner_id], references: [id])
+  brandId    brands    @relation(fields: [brand_id], references: [id])
+  branches   branches? @relation(fields: [branch_id], references: [id])
+
+  @@unique([partner_id, brand_id, branch_id])
 }
 
 model exchanges {
