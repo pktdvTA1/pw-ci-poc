@@ -48,12 +48,28 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 4, // Not active, not delete
+		id: 4, // Nationality Mars
 		external_member_id: 4,
-		firstName: 'Orawan',
+		firstName: 'JJ',
+		lastName: 'Zhu',
+		nationality: 'Mars',
+		email: 'jjzhu@gmail.com',
+		phoneNumber: '0812345679',
+		age: 24,
+		is_active: true,
+		is_delete: false,
+		origin: 'Palace Blade',
+		identity_number: 12345,
+		passport_number: 'AA6342205',
+		passport_expiry_date: '2025-12-15T00:00:00Z',
+	},
+	{
+		id: 5, // Not active, not delete
+		external_member_id: 5,
+		firstName: 'Suriya',
 		lastName: 'Hongkaew',
 		nationality: 'TH',
-		email: 'orawan.h@gmail.com',
+		email: 'suriya.h@gmail.com',
 		phoneNumber: '0812345679',
 		age: 18,
 		is_active: false,
@@ -64,12 +80,12 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 5, // Not active, deleted
-		external_member_id: 5,
-		firstName: 'Patcha',
-		lastName: 'Hongkaew',
+		id: 6, // Not active, deleted
+		external_member_id: 6,
+		firstName: 'Art',
+		lastName: 'Wutthanasin',
 		nationality: 'TH',
-		email: 'patcha.h@gmail.com',
+		email: 'art.w@gmail.com',
 		phoneNumber: '0812345679',
 		age: 20,
 		is_active: false,
@@ -80,12 +96,12 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 6, // Active, not delete
-		external_member_id: 6,
-		firstName: 'Terathip',
-		lastName: 'Kongdee',
+		id: 7, // Active, not delete
+		external_member_id: 7,
+		firstName: 'Somchai',
+		lastName: 'Meekwamsuk',
 		nationality: 'TH',
-		email: 'terathip.k@gmail.com',
+		email: 'somchai.m@gmail.com',
 		phoneNumber: '0812345679',
 		age: 22,
 		is_active: true,
@@ -96,8 +112,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 7, // Active, deleted
-		external_member_id: 7,
+		id: 8, // Active, deleted
+		external_member_id: 8,
 		firstName: 'Kulap',
 		lastName: 'Bunnag',
 		nationality: 'TH',
@@ -112,8 +128,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 8, // Age < 20
-		external_member_id: 8,
+		id: 9, // Age < 20
+		external_member_id: 9,
 		firstName: 'Ming',
 		lastName: 'Wei',
 		nationality: 'Mars',
@@ -128,8 +144,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 9, // Age = 20
-		external_member_id: 9,
+		id: 10, // Age = 20
+		external_member_id: 10,
 		firstName: 'Yang',
 		lastName: 'Yu',
 		nationality: 'Mars',
@@ -144,8 +160,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 10, // Age > 20
-		external_member_id: 10,
+		id: 11, // Age > 20
+		external_member_id: 11,
 		firstName: 'Xun',
 		lastName: 'Xu',
 		nationality: 'Mars',
@@ -160,8 +176,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 11, // Not active, not delete
-		external_member_id: 11,
+		id: 12, // Not active, not delete
+		external_member_id: 12,
 		firstName: 'Hua',
 		lastName: 'Xu',
 		nationality: 'Mars',
@@ -176,8 +192,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 12, // Not active, deleted
-		external_member_id: 12,
+		id: 13, // Not active, deleted
+		external_member_id: 13,
 		firstName: 'Heng',
 		lastName: 'Lu',
 		nationality: 'Mars',
@@ -192,8 +208,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 13, // Active, not delete
-		external_member_id: 13,
+		id: 14, // Active, not delete
+		external_member_id: 14,
 		firstName: 'Tao',
 		lastName: 'Xiao',
 		nationality: 'Mars',
@@ -208,8 +224,8 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 14, // Active, deleted
-		external_member_id: 14,
+		id: 15, // Active, deleted
+		external_member_id: 15,
 		firstName: 'Long',
 		lastName: 'Chu',
 		nationality: 'Mars',
@@ -224,11 +240,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 15, // Age < 20
-		external_member_id: 15,
+		id: 16, // Age < 20
+		external_member_id: 16,
 		firstName: 'Tiana',
 		lastName: 'Robb',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'tiana.r@gmail.com',
 		phoneNumber: '1234567890',
 		age: 16,
@@ -240,11 +256,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 16, // Age = 20
-		external_member_id: 16,
+		id: 17, // Age = 20
+		external_member_id: 17,
 		firstName: 'Severina',
 		lastName: 'Scavo',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'scavo.s@gmail.com',
 		phoneNumber: '1234567890',
 		age: 20,
@@ -256,11 +272,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 17, // Age > 20
-		external_member_id: 17,
+		id: 18, // Age > 20
+		external_member_id: 18,
 		firstName: 'Roseline',
 		lastName: 'Guillot',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'roseline.g@gmail.com',
 		phoneNumber: '1234567890',
 		age: 30,
@@ -272,11 +288,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 18, // Not active, not delete
-		external_member_id: 18,
+		id: 19, // Not active, not delete
+		external_member_id: 19,
 		firstName: 'Sylvain',
 		lastName: 'Garnier',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'garnier.s@gmail.com',
 		phoneNumber: '1234567890',
 		age: 18,
@@ -288,11 +304,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 19, // Not active, deleted
-		external_member_id: 19,
+		id: 20, // Not active, deleted
+		external_member_id: 20,
 		firstName: 'Betania',
 		lastName: 'Acosta',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'betania.a@gmail.com',
 		phoneNumber: '1234567890',
 		age: 20,
@@ -304,11 +320,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 20, // Active, not delete
-		external_member_id: 20,
+		id: 21, // Active, not delete
+		external_member_id: 21,
 		firstName: 'Cristopher',
 		lastName: 'Aguado',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'cristopher.a@gmail.com',
 		phoneNumber: '1234567890',
 		age: 22,
@@ -320,11 +336,11 @@ export const registered_members = [
 		passport_expiry_date: '2025-12-15T00:00:00Z',
 	},
 	{
-		id: 21, // Active, deleted
-		external_member_id: 21,
+		id: 22, // Active, deleted
+		external_member_id: 22,
 		firstName: 'Lilia',
 		lastName: 'Rojasu',
-		nationality: 'French',
+		nationality: 'Mars',
 		email: 'liliad.r@gmail.com',
 		phoneNumber: '1234567890',
 		age: 24,
@@ -334,5 +350,21 @@ export const registered_members = [
 		identity_number: 12345,
 		passport_number: 'AA6342205',
 		passport_expiry_date: '2025-12-15T00:00:00Z',
+	},
+	{
+		id: 23, // Active, deleted
+		external_member_id: 23,
+		firstName: 'Ahin',
+		lastName: 'Cruise',
+		nationality: 'Mars',
+		email: 'ahin@gmail.com',
+		phoneNumber: '1234567890',
+		age: 24,
+		is_active: true,
+		is_delete: false,
+		origin: 'XCALIBER',
+		identity_number: 12345,
+		passport_number: null,
+		passport_expiry_date: null,
 	},
 ];
