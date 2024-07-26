@@ -1,12 +1,13 @@
 import { test as setup } from '@playwright/test';
 import { PrismaService } from '~databases/prisma/dbService';
 import {
+	exchanges,
 	external_members,
+	partners,
 	permissions,
 	role_permissions,
 	roles,
 	users,
-	partners,
 } from '~databases/prisma/seeders/';
 
 setup('Setup Common Data', async () => {
@@ -20,6 +21,7 @@ setup('Setup Common Data', async () => {
 		'external_members',
 		'registered_members',
 		'partners',
+		'exchanges',
 	]);
 	await Promise.all([
 		prisma.insertIntoTable('permissions', permissions),
@@ -33,4 +35,5 @@ setup('Setup Common Data', async () => {
 		prisma.insertIntoTable('external_members', external_members),
 		prisma.insertIntoTable('partners', partners),
 	]);
+	await prisma.insertIntoTable('exchanges', exchanges);
 });
