@@ -108,8 +108,8 @@ test.describe('Update Loyalty Member Management', () => {
 		test('Should return error when updating a member with the same phone number', async ({
 			request,
 		}) => {
-			const res = await request.patch(`api/member/1`, {
-				data: { phoneNumber: '0812345678' },
+			const res = await request.patch(`api/member/2`, {
+				data: { phoneNumber: '0812345679' },
 			});
 			const body = await res.json();
 
@@ -181,7 +181,7 @@ test.describe('Update Loyalty Member Management', () => {
 			expect(body.email).toBe('prinnada.c@gmail.com');
 		});
 
-		test('Should return the previous status is_delete is not editable', async ({
+		test('Should return true of is_delete if it is not editable', async ({
 			request,
 		}) => {
 			const res = await request.patch(`api/member/1`, {
@@ -191,6 +191,18 @@ test.describe('Update Loyalty Member Management', () => {
 
 			await expect(res).toBeOK();
 			expect(body.is_delete).toBe(false);
+		});
+
+		test('Should return success when edit is_active to be false', async ({
+			request,
+		}) => {
+			const res = await request.patch(`api/member/7`, {
+				data: { isActive: false },
+			});
+			const body = await res.json();
+
+			await expect(res).toBeOK();
+			expect(body.is_active).toBe(false);
 		});
 	});
 });
