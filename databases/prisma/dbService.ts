@@ -18,8 +18,9 @@ export namespace PrismaService {
 		) {
 			const model = this.prisma[table] as any;
 			if (!model) {
-				throw new Error(`Medle ${table} not found`);
+				throw new Error(`Model ${table} not found`);
 			}
+
 			try {
 				const inserted = await model.createManyAndReturn({
 					data: data,
@@ -31,6 +32,7 @@ export namespace PrismaService {
 					await this.prisma
 						.$queryRaw`SELECT setval(${tableSeqName}, ${sorted[0].id}, true);`;
 				}
+				return inserted;
 			} catch (e) {
 				throw new Error(`Unable to insert into table ${table} due to > ${e}`);
 			}
@@ -51,7 +53,7 @@ export namespace PrismaService {
 		async queryAll<T extends PrismaModelNames>(table: T) {
 			const model = this.prisma[table] as any;
 			if (!model) {
-				throw new Error(`Medle ${table} not found`);
+				throw new Error(`Model ${table} not found`);
 			}
 			try {
 				return model.findMany();
@@ -63,7 +65,7 @@ export namespace PrismaService {
 		async queryById<T extends PrismaModelNames>(table: T, id: number) {
 			const model = this.prisma[table] as any;
 			if (!model) {
-				throw new Error(`Medle ${table} not found`);
+				throw new Error(`Model ${table} not found`);
 			}
 			try {
 				// yes it's findMany not findUnique or findOne
