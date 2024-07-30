@@ -37,7 +37,7 @@ export namespace userRoutes {
 					});
 					return reply.code(StatusCode.OK_200).send(users);
 				} catch (e) {
-					return reply.code(StatusCode.BAD_REQUEST).send({
+					return reply.code(StatusCode.BAD_REQUEST_400).send({
 						msg: e,
 					});
 				}

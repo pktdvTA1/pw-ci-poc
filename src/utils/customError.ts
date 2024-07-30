@@ -2,7 +2,7 @@ import { FastifyReply } from 'fastify';
 import { StatusCode } from '~src/enums/statuCode';
 export namespace CustomError {
 	export const exchangeConfig = (reply: FastifyReply, input: string) => {
-		return reply.code(StatusCode.OK_200).send({
+		return reply.code(StatusCode.BAD_REQUEST_400).send({
 			result: 'FAIL',
 			msg: `Invalid input of ${input}`,
 		});
