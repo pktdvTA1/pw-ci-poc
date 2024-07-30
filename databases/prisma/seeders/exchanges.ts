@@ -1,4 +1,5 @@
-export const exchanges = [
+import type { Prisma } from '@prisma/client';
+export const exchanges: Prisma.exchangesCreateManyInput[] = [
 	{
 		id: 1,
 		name: 'KFC-Active Exchange USD-1',

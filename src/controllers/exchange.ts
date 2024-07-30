@@ -61,7 +61,7 @@ export namespace ExchangeController {
 					'Currency Name and Currency Code, them combined may already exist'
 				);
 			}
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'Something wrong when creating configuration > ' + e,
 			});
@@ -141,7 +141,7 @@ export namespace ExchangeController {
 					'Currency Name and Currency Code, them combined may already exist'
 				);
 			}
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'Something wrong when creating configuration > ' + e,
 			});

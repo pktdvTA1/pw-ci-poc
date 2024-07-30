@@ -17,13 +17,13 @@ export namespace MemberController {
 	) => {
 		const { email, phoneNumber, external_id, origin } = request.body;
 		if (email === null && phoneNumber === null) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				msg: 'Email or Phone are required',
 			});
 		}
 		const criteria = ExtMemberHelper.getCriteria(origin);
 		if (!criteria) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				msg: `Origin of '${origin}' is not support`,
 			});
 		}
@@ -84,7 +84,7 @@ export namespace MemberController {
 					.code(StatusCode.NOT_FOUND_404)
 					.send({ msg: 'External Member Not Found' });
 			} else {
-				return reply.code(StatusCode.BAD_REQUEST).send({ msg: e });
+				return reply.code(StatusCode.BAD_REQUEST_400).send({ msg: e });
 			}
 		}
 	};
@@ -122,7 +122,7 @@ export namespace MemberController {
 			(lastName && !ExtMemberHelper.validateFNandLN(lastName))
 		) {
 			console.log('here in validation of fn/ln');
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'FirstName or Lastname format is invalid',
 			});
@@ -131,7 +131,7 @@ export namespace MemberController {
 			(firstName && firstName?.trim().split('').length > 50) ||
 			(lastName && lastName?.trim().split('').length > 50)
 		) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'FirstName or Lastname is longer than 50',
 			});
@@ -142,26 +142,26 @@ export namespace MemberController {
 				nationality as EcoSystem.Nationality
 			)
 		) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'Nationality is not support',
 			});
 		}
 		if (age && age <= 5) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'Age cant be lower than 5',
 			});
 		}
 		if (phoneNumber && phoneNumber === member.phoneNumber) {
-			return reply.code(StatusCode.BAD_REQUEST).send({
+			return reply.code(StatusCode.BAD_REQUEST_400).send({
 				result: 'FAIL',
 				msg: 'PhoneNumber should not be the same',
 			});
 		}
 		if (passportNumber || passportExpiryDate) {
 			if (!member.passport_number || !member.passport_expiry_date) {
-				return reply.code(StatusCode.BAD_REQUEST).send({
+				return reply.code(StatusCode.BAD_REQUEST_400).send({
 					result: 'FAIL',
 					msg: 'No Passport number or Expiry found, Please register passport first.',
 				});
@@ -169,7 +169,7 @@ export namespace MemberController {
 			const ppExpiry = getYear(passportExpiryDate as Date);
 			const currentYear = getYear(new Date());
 			if (ppExpiry <= currentYear) {
-				return reply.code(StatusCode.BAD_REQUEST).send({
+				return reply.code(StatusCode.BAD_REQUEST_400).send({
 					result: 'FAIL',
 					msg: 'Passport Expiry cant be lower or equal to current year.',
 				});
@@ -183,7 +183,7 @@ export namespace MemberController {
 			return reply.code(StatusCode.OK_200).send(updateResult);
 		} catch (e) {
 			return reply
-				.code(StatusCode.BAD_REQUEST)
+				.code(StatusCode.BAD_REQUEST_400)
 				.send({ result: 'FAIL', msg: e });
 		}
 	};

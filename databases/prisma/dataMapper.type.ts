@@ -14,4 +14,8 @@ export type PrismaModelDataMapper = {
 	registered_members: Prisma.registered_membersCreateManyInput;
 	partners: Prisma.partnersCreateManyInput;
 	exchanges: Prisma.exchangesCreateManyInput;
+	partner_contacts: Prisma.partner_contactsCreateManyInput;
+	branches: Prisma.branchesCreateManyInput;
+	brands: Prisma.brandsCreateManyInput;
+	partner_brand: Prisma.partner_brandCreateManyInput;
 };
