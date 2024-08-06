@@ -250,7 +250,7 @@ test.describe('Exchange Configuration Management', () => {
 		test('Should create success with inactive partner', async ({ request }) => {
 			const res = await request.post('api/exchange', {
 				data: {
-					name: 'Inactive exchange',
+					name: 'Inactive exchange 2',
 					currency_code: 'THB',
 					inbound_ratio_them: 1,
 					inbound_ratio_us: 1,
@@ -264,7 +264,7 @@ test.describe('Exchange Configuration Management', () => {
 			const body = await res.json();
 
 			await expect(res).toBeOK();
-			expect(body.name).toBe('Inactive exchange');
+			expect(body.name).toBe('Inactive exchange 2');
 			expect(body.currency_code).toBe('THB');
 			expect(body.inbound_ratio_them).toBe('1');
 			expect(body.inbound_ratio_us).toBe('1');
@@ -272,7 +272,7 @@ test.describe('Exchange Configuration Management', () => {
 			expect(body.outbound_ratio_them).toBe('3');
 			expect(body.is_active).toBe(false);
 			expect(body.minimum_amount).toBe('150');
-			expect(body.partner_id).toBe(1);
+			expect(body.partner_id).toBe(2);
 		});
 
 		test('Should return an error when creating an exchange configuration with a deleted partner', async ({
