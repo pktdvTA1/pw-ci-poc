@@ -3,7 +3,7 @@ import { CompanyType } from '~src/enums/companyType';
 export const partners: Prisma.partnersCreateManyInput[] = [
 	{
 		id: 1,
-		name: 'KFC-Active',
+		name: 'KFC Active',
 		title: CompanyType.CO,
 		abbreviation: 'KC1',
 		address: 'somewhere',
@@ -17,7 +17,7 @@ export const partners: Prisma.partnersCreateManyInput[] = [
 	},
 	{
 		id: 2,
-		name: 'KFC-Inactive',
+		name: 'KFC Inactive',
 		title: CompanyType.CO,
 		abbreviation: 'KC2',
 		address: 'somewhere',
@@ -31,7 +31,7 @@ export const partners: Prisma.partnersCreateManyInput[] = [
 	},
 	{
 		id: 3,
-		name: 'KFC-Active-Delete',
+		name: 'KFC Active Delete',
 		title: CompanyType.CO,
 		abbreviation: 'KC3',
 		address: 'somewhere',
@@ -45,7 +45,7 @@ export const partners: Prisma.partnersCreateManyInput[] = [
 	},
 	{
 		id: 4,
-		name: 'KFC-Inactive-Delete',
+		name: 'KFC Inactive Delete',
 		title: CompanyType.CO,
 		abbreviation: 'KC4',
 		address: 'somewhere',
